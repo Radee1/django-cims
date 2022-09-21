@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cim_users',
+    'cim_users.apps.Cim_usersConfig',
 ]
 
 MIDDLEWARE = [
