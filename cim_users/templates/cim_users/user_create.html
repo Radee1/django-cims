@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<br><br>
+<section id="form">
+    <div>
+        <form class="center" method="POST" enctype="multipart/form-data" action="/user_create">
+            {% csrf_token %}
+            <div>
+                <label>Username</label><br>
+                <input type="text" name="username" placeholder="Username" required>
+            </div>
+            <div>
+                <label>Email</label><br>
+                <input type="email" name="email" placeholder="Username" required>
+            </div>
+            <div>
+                <label>Password</label><br>
+                <input type="password" name="pass" placeholder="Password" required>
+            </div>
+            <div>
+                <label>Confirm Password</label><br>
+                <input type="password" name="password" placeholder="Confirm Password" required="pass">
+            </div>
+            <button class="submit" type="submit">Create</button>
+        </form>
+    </div>
+</section>
+<style type="text/css">
+    #login_btn {
+        color: white;
+    }
+</style>
+{% endblock %}
