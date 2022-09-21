@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cim_users',
-    'cim_users.apps.Cim_usersConfig',
+    'cim_users.apps.CimUsersConfig',
+
 ]
 
 MIDDLEWARE = [

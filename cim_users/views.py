@@ -8,17 +8,17 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 
 # Create your views here.
 def index(request):
-    return render(request, 'users/user_login.html')
+    return render(request, 'cim_users/user_login.html')
 
 def home(request):
-    return render(request, 'users/index.html')
+    return render(request, 'cim_users/index.html')
 
 def about(request):
-    return render(request, 'users/about.html')
+    return render(request, 'cim_users/about.html')
 
 #loging
 def login(request):
-    return render(request, 'users/user_login.html')
+    return render(request, 'cim_users/user_login.html')
 
 def login_user(request):
     user_name = request.POST['username']
@@ -33,19 +33,19 @@ def login_user(request):
             return redirect('/home')
         else:
             # No backend authenticated the credentials
-            return render(request, 'users/user_login.html')
+            return render(request, 'cim_users/user_login.html')
     else:
-        return render(request, 'users/user_login.html')
+        return render(request, 'cim_users/user_login.html')
 
 @login_required
 def logout_user(request):
     auth_logout(request)
     # Redirect to a success page.
-    return render(request, 'users/user_login.html')
+    return render(request, 'cim_users/user_login.html')
 
 
 def services(request):
-    return render(request, 'users/services.html')
+    return render(request, 'cim_users/services.html')
 
 def team(request):
-    return render(request, 'users/team.html')
+    return render(request, 'cim_users/team.html')
