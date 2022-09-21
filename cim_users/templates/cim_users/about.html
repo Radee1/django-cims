@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<br><br>
+<h1 class="center"><b>What is CIMS?</b></h1>
+<section id="form">
+
+    <div>
+        <h2>
+            This is a one stop point for clinic information management. It comes with out of the box;
+        </h2>
+    </div>
+    <br>
+    <div class="row center">
+        <div class="column">
+            <br><br>
+            <img src="{% static '/cim_users/patient.png' %}" alt="Patient image">
+            <h2><a>Patient</a></h2>
+            <p>Records Management</p>
+            <br><br>
+        </div>
+
+        <div class="column">
+            <br><br>
+            <img src="{% static '/cim_users/diagnosis.png' %}" alt="Diagnosis image">
+            <h2><a>Diagnosis</a></h2>
+            <p>Information Management</p>
+            <br><br>
+        </div>
+
+        <div class="column">
+            <br><br>
+            <img src="{% static '/cim_users/medicine.png' %}" alt="Medicine image">
+            <h2><a>Medication</a></h2>
+            <p>Stock & Record Management</p>
+            <br><br>
+        </div>
+
+        <div class="column">
+            <br><br>
+            <img src="{% static '/cim_users/appointment.png' %}" alt="Appointment image">
+            <h2><a>Appointment</a></h2>
+            <p>Creation & Monitoring</p>
+            <br><br>
+        </div>
+    </div>
+</section>
+<style type="text/css">
+    #home_btn {
+        color: white;
+    }
+</style>
+{% endblock %}
