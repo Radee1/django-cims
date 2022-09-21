@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<br><br>
+<h1 class="center"><b>CIMS Services !</b></h1>
+{% if user.is_authenticated %}
+<section id="form">
+    <div class="row center">
+        <div class="column">
+            <br><br>
+            <img src="{% static '/cim_users/patient.png' %}" alt="Patient image">
+            <h2><a>Patient</a></h2>
+            <p>Create Record</p>
+            <br><br>
+        </div>
+
+        <div class="column">
+            <br><br>
+            <img src="{% static '/cim_users/diagnosis.png' %}" alt="Diagnosis image">
+            <h2><a>Laboratory</a></h2>
+            <p>Add diagnosis</p>
+            <br><br>
+        </div>
+
+        <div class="column">
+            <br><br>
+            <img src="{% static '/cim_users/medicine.png' %}" alt="Medicine image">
+            <h2><a>Pharmacy</a></h2>
+            <p>Issue medication</p>
+            <br><br>
+        </div>
+
+        <div class="column">
+            <br><br>
+            <img src="{% static '/cim_users/appointment.png' %}" alt="Appointment image">
+            <h2><a>Doctors</a></h2>
+            <p>Make appointment</p>
+            <br><br>
+        </div>
+    </div>
+</section>
+{% else %}
+<section id="form">
+
+    <div>
+        <h2>
+            <p>
+                A one stop point for clinical management information,
+            </p>
+        </h2>
+    </div>
+    <br>
+    <div class="row center">
+        <div class="column">
+            <br><br>
+            <img src="{% static '/cim_users/patient.png' %}" alt="Patient image">
+            <h2><a>Patient</a></h2>
+            <p>Record Management</p>
+            <br><br>
+        </div>
+
+        <div class="column">
+            <br><br>
+            <img src="{% static '/cim_users/diagnosis.png' %}" alt="Diagnosis image">
+            <h2><a>Laboratory</a></h2>
+            <p>Record Management</p>
+            <br><br>
+        </div>
+
+        <div class="column">
+            <br><br>
+            <img src="{% static '/cim_users/medicine.png' %}" alt="Medicine image">
+            <h2><a>Pharmacy</a></h2>
+            <p>Stock & Record Management</p>
+            <br><br>
+        </div>
+
+        <div class="column">
+            <br><br>
+            <img src="{% static '/cim_users/appointment.png' %}" alt="Appointment image">
+            <h2><a> Appointment</a></h2>
+            <p> Creation & Monitoring</p>
+            <br><br>
+        </div>
+    </div>
+
+</section>
+{% endif %}
+<style type="text/css">
+    #services_btn {
+        color: white;
+    }
+</style>
+{% endblock %}
