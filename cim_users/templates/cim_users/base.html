@@ -71,6 +71,16 @@
     </header>
 
     <div id="page_content">
+        {% if messages %}
+        <div class="center">
+            <br><br>
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
         {% block content %} {% endblock %}
     </div>
     <br><br>
