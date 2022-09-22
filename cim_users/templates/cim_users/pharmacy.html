@@ -2,7 +2,7 @@
 {% block content %}
 {% load static %}
 <br><br>
-<h1 class="center"><b>The CIMS Team !</b></h1>
+<h1 class="center"><b>The CIMS Pharmacy !</b></h1>
 {% if user.is_authenticated %}
 <section id="form">
     <div class="row center">
@@ -47,47 +47,5 @@
     </div>
 </section>
 {% else %}
-<section id="form">
-
-    <br>
-    <div class="row center">
-        <div class="column">
-            <br><br>
-            <img src="{% static '/cim_users/doc.png' %}" alt="Patient image">
-            <h2><a>Opio Peter</a></h2>
-            <p>Receptionist</p>
-            <br><br>
-        </div>
-
-        <div class="column">
-            <br><br>
-            <img src="{% static '/cim_users/doc.png' %}" alt="Diagnosis image">
-            <h2><a>Cris Anne</a></h2>
-            <p>Laboratory</p>
-            <br><br>
-        </div>
-
-        <div class="column">
-            <br><br>
-            <img src="{% static '/cim_users/doc.png' %}" alt="Medicine image">
-            <h2><a>Don Moe</a></h2>
-            <p>Pharmacist</p>
-            <br><br>
-        </div>
-
-        <div class="column">
-            <br><br>
-            <img src="{% static '/cim_users/doc.png' %}" alt="Appointment image">
-            <h2><a>Ric Man</a></h2>
-            <p>Doctor</p>
-            <br><br>
-        </div>
-    </div>
-</section>
-{% endif %}
-<style type="text/css">
-    #team_btn {
-        color: white;
-    }
-</style>
+<b>Not authorized</b>
 {% endblock %}

@@ -5,48 +5,50 @@
 {% if user.is_authenticated %}
 <section id="form">
     <div class="row center">
-        <div class="column">
-            <br><br>
-            <img src="{% static '/cim_users/patient.png' %}" alt="Patient image">
-            <h2><a>Patient</a></h2>
-            <p>Interaction & Records</p>
-            <br><br>
-        </div>
+        <a href="/patients">
+            <div class="column">
+                <br><br>
+                <img src="{% static '/cim_users/check.png' %}" alt="Patient image">
+                <h2><a>Patients</a></h2>
+                <h5><b>TOTAL : 0</b></h5>
+                <br>
+                <a href="/patients">
+                    <button>VIEW</button>
+                </a>
+                <br><br>
+            </div>
 
-        <div class="column">
-            <br><br>
-            <img src="{% static '/cim_users/diagnosis.png' %}" alt="Diagnosis image">
-            <h2><a>Diagnosis</a></h2>
-            <p>Information</p>
-            <br><br>
-        </div>
+            <div class="column">
+                <br><br>
+                <img src="{% static '/cim_users/steth.png' %}" alt="Diagnosis image">
+                <h2><a>Diagnosis</a></h2>
+                <h5><b>TOTAL : 0</b></h5>
+                <br>
+                <button>VIEW</button>
+                <br><br>
+            </div>
 
-        <div class="column">
-            <br><br>
-            <img src="{% static '/cim_users/medicine.png' %}" alt="Medicine image">
-            <h2><a>Medication</a></h2>
-            <p>Stock Management</p>
-            <br><br>
-        </div>
+            <div class="column">
+                <br><br>
+                <img src="{% static '/cim_users/medicine.png' %}" alt="Medicine image">
+                <h2><a>Medication</a></h2>
+                <h5><b>TOTAL : 0</b></h5>
+                <br>
+                <button>VIEW</button>
+                <br><br>
+            </div>
 
-        <div class="column">
-            <br><br>
-            <img src="{% static '/cim_users/appointment.png' %}" alt="Appointment image">
-            <h2><a>Appointments</a></h2>
-            <p>Creation & Monitoring</p>
-            <br><br>
-        </div>
+            <div class="column">
+                <br><br>
+                <img src="{% static '/cim_users/med3.png' %}" alt="Appointment image">
+                <h2><a>Appointments</a></h2>
+                <h5><b>TOTAL : 0</b></h5>
+                <br>
+                <button>VIEW</button>
+                <br><br>
+            </div>
     </div>
 </section>
-<style type="text/css">
-    #logo {
-        color: white;
-    }
-
-    #home_btn {
-        color: white;
-    }
-</style>
 {% else %}
 <h1 class="center"><b>Welcome to CIMS !</b></h1>
 <section id="form">
@@ -70,7 +72,7 @@
             <img src="{% static '/cim_users/record.png' %}" alt="Patient image">
             <h2><a>Patient</a></h2>
             <p>Records</p>
-            <br><br>
+            <br><br><br>
         </div>
 
         <div class="column">
@@ -83,7 +85,7 @@
 
         <div class="column">
             <br><br>
-            <img src="{% static '/cim_users/drug.png' %}" alt="Medicine image">
+            <img src="{% static '/cim_users/med2.png' %}" alt="Medicine image">
             <h2><a>Medication</a></h2>
             <p>Stock Management</p>
             <br><br>
@@ -98,10 +100,14 @@
         </div>
     </div>
 </section>
+{% endif %}
 <style type="text/css">
     #logo {
         color: white;
     }
+
+    #home_btn {
+        color: white;
+    }
 </style>
-{% endif %}
 {% endblock %}

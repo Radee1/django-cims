@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cim_users.apps.CimUsersConfig',
+    'patients.apps.PatientsConfig',
 
 ]
 
