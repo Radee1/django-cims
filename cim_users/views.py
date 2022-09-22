@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+# flash messages
+from django.contrib import messages
 #user database
 from django.contrib.auth.models import User
 #authenticate
@@ -29,12 +31,15 @@ def login_user(request):
         if user is not None:
             # login
             auth_login(request,user)
+            messages.success(request, 'Login Success')
             #redirect
             return redirect('/home')
         else:
             # No backend authenticated the credentials
+            messages.error(request, 'Wrong Username or Password.')
             return render(request, 'cim_users/user_login.html')
     else:
+        messages.success(request, 'Account credentials do not exist.')
         return render(request, 'cim_users/user_login.html')
 
 @login_required
