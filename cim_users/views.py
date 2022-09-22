@@ -45,7 +45,7 @@ def login_user(request):
 @login_required
 def logout_user(request):
     auth_logout(request)
-    # Redirect to a success page.
+    messages.success(request, 'You have logged out, Goodbye!')
     return render(request, 'cim_users/user_login.html')
 
 
