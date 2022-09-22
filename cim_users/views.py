@@ -50,7 +50,7 @@ def create_user(request):
     user_email = request.POST['email']
     user = User.objects.create_user(user_name, user_email, user_password)
     # Redirect to a success page.
-    return render(request, 'cim_users/login.html')
+    return render(request, 'cim_users/user_login.html')
 
 def create_user_page(request):
     # Redirect to a success page.
