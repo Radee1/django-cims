@@ -53,9 +53,14 @@ def create_user(request):
     user_name = request.POST['username']
     user_password = request.POST['password']
     user_email = request.POST['email']
-    user = User.objects.create_user(user_name, user_email, user_password)
-    # Redirect to a success page.
-    return render(request, 'cim_users/user_login.html')
+    if User.objects.filter(username = user_name).first():
+        messages.info(request, 'Account already exists')
+        return render(request, 'cim_users/user_create.html')
+    else:
+        messages.success(request, 'Account created.')
+        user = User.objects.create_user(user_name, user_email, user_password)
+        # Redirect to a success page.
+        return render(request, 'cim_users/user_login.html')
 
 def create_user_page(request):
     # Redirect to a success page.
