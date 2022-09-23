@@ -1,108 +1,112 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# CIMS
 
-Welcome Radee1,
+## Clinical Information Management System
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+Clinic Information Management System (CIMS) is a fullstack web application, developed using python django. It enables clinic personnel and administrators to not only track patient records but also the doctors and nurses providing health care and treatment to the respective patients.
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+### Application Goal
 
-## Gitpod Reminders
+To manage patient information and enable tracking of health care services
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+### Target Audience
 
-`python3 -m http.server`
+* The system administrator who might want to add new personnel in the  CIMS application
 
-A blue button should appear to click: _Make Public_,
+* Doctors who might want to treat patients
 
-Another blue button should appear to click: _Open Browser_.
+* Pharmacists who might want to prescribe medicine to patients
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+* Laboratory technicians who might want to perform tests and diagnosis
 
-A blue button should appear to click: _Make Public_,
-
-Another blue button should appear to click: _Open Browser_.
-
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
-
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+* Receptionists who might want to enter patient records and make patient appointments
 
 ------
 
-## Release History
+## Features
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+1. **The Navigation Bar**
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+* The navigation bar is responsive and is included on all four pages. It provides links to the Home page, Team page, Services page and the login page. It is the same on each page to facilitate easy navigation.
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+* This section allows users to simply go from page to page across all devices without having to use the ‘back’ button to return to the previous page.
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+![The Navigation Bar](cim_users/static/cim_users/navigationbar.PNG)
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+2. **The CIMS landing page**
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+* The landing or main Home page comprises an image of the services to help the viewer understand what this site is about and how it can be useful. In this case, the CIMS logo and the Home are both linked.
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+![The landing/home page](cim_users/static/cim_users/landingpage.PNG)
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+3. **The Footer**
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+* The footer section includes the copyright information of CIMS.
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+![The footer](cim_users/static/cim_users/footer.PNG)
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+3. **The Team page**
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+* The team page on the CIMS application shows the different persons on the team at the clinic or hospital. These include the doctors, laboratory technicians, receptionists and the pharmacists.
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+![The team page](cim_users/static/cim_users/teampage1.PNG)
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+4. **The Services page**
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+* The services page contains a list of services offered in the CIMS application. These services include patient record management, making appointments, laboratory record management and pharmacy stock and record management.
+
+![The services page](cim_users/static/cim_users/servicespage1.PNG)
+
+5. **The Login page**
+
+* The login page for the CIMS application is where users may enter their credentials that is the username and password. The login feature is created for users who are already registered in the system. The page also contains a register link for new users to sign up on the application.
+
+![The Login page](cim_users/static/cim_users/loginpage.PNG)
 
 ------
 
-## FAQ about the uptime script
+## Testing and Validation
 
-**Why have you added this script?**
+** Pep8 Validation **
+* All python code was ran through pep8online.com validator and any warnings or errors were fixed. Code then validated successfully.
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+### Bugs and Fixes
 
-**How will this affect me?**
+## Deployment
+------
+### Version Control
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+* The site was created using the Visual Studio Code editor and pushed to github to the remote repository covid-vaccination-survey-data-analyser.
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+The following git commands were used throughout development to push code to the remote repo:
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+* git add <file> - This command was used to add the file(s) to the staging area before they are committed.
 
-**So….?**
+* git commit -m "commit message" - This command was used to commit changes to the local repository queue ready for the final step.
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+* git push - This command was used to push all committed code to the remote repository on github.
 
-**Can I opt out?**
+### Heroku Deployment
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+The following steps were followed to deploy this project to Heroku:
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+* Go to Heroku and click "New" to create a new app.
 
-**Anything more?**
+* Choose an app name and region region, click "Create app"
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+* Go to "Settings" and navigate to Config Vars. Add the following config variables:
+   * PORT : 8000
+* Navigate to Buildpacks and add buildpacks for Python and NodeJS (in that order).
 
----
+* Navigate to "Deploy". Set the deployment method to Github and enter repository name and connect.
 
-Happy coding!
+* Scroll down to Manual Deploy, select "main" branch and click "Deploy Branch".
+
+* The app will now be deployed to heroku
+
+### Cloudinary Deployment
+
+## Credits
+------
+* Lecture/ course videos on how to deploy the application
+
+* You tube tutorials on how to import library in python https://www.youtube.com/watch?v=h0oRPIlnJYQ

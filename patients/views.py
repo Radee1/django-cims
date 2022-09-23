@@ -12,4 +12,4 @@ def diagnosis(request):
     return render(request, 'cim_users/diagnosis.html')
 
 def treatment(request):
-    return render(request, 'cim_users/treatment.html')
+    return render(request, 'cim_users/pharmacy.html')

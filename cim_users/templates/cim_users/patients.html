@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<br><br>
+<h1 class="center"><b>The CIMS Patients!</b></h1>
+{% if user.is_authenticated %}
+<section id="form">
+    <div class="row center">
+        <div class="column">
+            <br><br><br>
+            <img src="{% static '/cim_users/add.png' %}" alt="Appointment image">
+            <h2><a>Add </a></h2>
+            <br><br>
+        </div>
+        <div class="column">
+            <br><br><br>
+            <img src="{% static '/cim_users/check.png' %}" alt="Appointment image">
+            <h2><a>TOTAL : 0 </a></h2>
+            <br><br>
+        </div>
+    </div>
+    <div class="row center">
+        <div class="column">
+            <br>
+            <img src="{% static '/cim_users/doc.png' %}" alt="Patient image">
+            <h2><a>Opio Peter</a></h2>
+            <button>Status : Waiting</button>
+            <br><br>
+            <button>Update</button>
+            <button>Delete</button>
+            <br><br>
+        </div>
+    </div>
+</section>
+{% else %}
+<b>Not authorized</b>
+{% endif %}
+{% endblock %}
