@@ -62,12 +62,35 @@ To manage patient information and enable tracking of health care services
 
 ![The Login page](cim_users/static/cim_users/loginpage.PNG)
 
+6. **Register**
+
+* The register link helps new users to signup or create accounts in the CIMS application. The page allows new users to enter their usernames, passwords, emails as well as a field to confirm their passwords.
+
+![The register link](cim_users/static/cim_users/register.PNG)
+
+7.**The flash messages**
+
+* On successful login, the user gets to view a dashboard which is different from the home page.
+
+![The successful login message](cim_users/static/cim_users/loginsuccess.PNG)
+
+* When a user enters wrong credentials, that is to say either a wrong username or password, the form returns a message that reads Account credentials do not exist.
+
+![The wronglogin credentials](cim_users/static/cim_users/wronglogincredentials.PNG)
+
+* When the user enters either a correct username or password, the system returns a flash message thst reads wrong username or password.
+
+![The wrongusernamepw credentials](cim_users/static/cim_users/wrongusernamepw.PNG)
+
+* Likewise, when a user wants to log out of the system. The CIMS application returns the message you have logged out, goodbye!
+
+![The logout](cim_users/static/cim_users/logoutmsg.PNG)
+
 ------
 
 ## Testing and Validation
 
 ** Pep8 Validation **
-* All python code was ran through pep8online.com validator and any warnings or errors were fixed. Code then validated successfully.
 
 ### Bugs and Fixes
 

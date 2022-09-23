@@ -8,14 +8,45 @@
     <div class="row center">
         <div class="column">
             <br><br><br>
-            <img src="{% static '/cim_users/add.png' %}" alt="Appointment image">
-            <h2><a>Add </a></h2>
-            <br><br>
+            <b>
+                <-< /b>
+                    <h2><a>Back to dashboard</a></h2>
+                    <br><br>
         </div>
         <div class="column">
             <br><br><br>
             <img src="{% static '/cim_users/check.png' %}" alt="Appointment image">
             <h2><a>TOTAL : 0 </a></h2>
+            <br><br>
+        </div>
+        <div class="column">
+            <br><br><br>
+            <img src="{% static '/cim_users/add.png' %}" alt="Appointment image" onclick="show('add_patient')">
+            <h2><a>Add </a></h2>
+            <br><br>
+            <div id="add_patient" style="display:none;">
+                <form class="center form" method="POST" enctype="multipart/form-data" action="#">
+                    {% csrf_token %}
+                    <div>
+                        <input type="text" name="Patient Name" placeholder="Fullname" required>
+                    </div>
+                    <div>
+                        <input type="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div>
+                        <input type="number" name="age" placeholder="Age" required>
+                    </div>
+                    <div>
+                        <input type="text" name="password" placeholder="Aailment" required>
+                    </div>
+                    <button class="submit" type="submit">Add</button>
+                </form>
+            </div>
+        </div>
+        <div class="column">
+            <br><br><br>
+            <b>-></b>
+            <h2><a>Next</a></h2>
             <br><br>
         </div>
     </div>
