@@ -7,45 +7,70 @@
 <section id="form">
     <div class="row center">
         <div class="column">
-            <br><br>
-            <img src="{% static '/cim_users/doc.png' %}" alt="Patient image">
-            <h2><a>Opio Peter</a></h2>
-            <p>Receptionist</p>
-            <br><br>
-        </div>
-
-        <div class="column">
-            <br><br>
-            <img src="{% static '/cim_users/doc.png' %}" alt="Diagnosis image">
-            <h2><a>Cris Anne</a></h2>
-            <p>Laboratory</p>
-            <br><br>
-        </div>
-
-        <div class="column">
-            <br><br>
-            <img src="{% static '/cim_users/doc.png' %}" alt="Medicine image">
-            <h2><a>Don Moe</a></h2>
-            <p>Pharmacist</p>
-            <br><br>
-        </div>
-
-        <div class="column">
-            <br><br>
-            <img src="{% static '/cim_users/doc.png' %}" alt="Appointment image">
-            <h2><a>Ric Man</a></h2>
-            <p>Doctor</p>
+            <br><br><br>
+            <img src="{% static '/cim_users/left.png' %}" alt="Arrow image">
+            <h2><a href="/home">Back to dashboard</a></h2>
             <br><br>
         </div>
         <div class="column">
+            <br><br><br>
+            <img src="{% static '/cim_users/drug.png' %}" alt="drug image">
+            <h2><a>TOTAL : {{ number }} </a></h2>
             <br><br>
-            <img src="{% static '/cim_users/doc.png' %}" alt="Appointment image">
+        </div>
+        <div class="column">
+            <br><br><br>
+            <img src="{% static '/cim_users/add.png' %}" alt="Appointment image" onclick="show('add_patient')">
             <h2><a>Add </a></h2>
-            <p>Team member</p>
+            <br><br>
+            <div id="add_patient" style="display:none;">
+                <form class="center form" method="POST" action="/prescribe/">
+                    {% csrf_token %}
+                    <div>
+                        <input type="text" name="Patient_Name" placeholder="Fullname" required>
+                    </div>
+                    <div>
+                        <input type="text" name="medicine" placeholder="Medication" required>
+                    </div>
+                    <div>
+                        <input type="text" name="stock" placeholder="Stock" required>
+                    </div>
+                    <input type="submit" value="Prescribe">
+                </form>
+            </div>
+        </div>
+        <div class="column">
+            <br><br><br>
+            <img src="{% static '/cim_users/right.png' %}" alt=" right Arrow image">
+            <h2><a href="/patients">Next</a></h2>
             <br><br>
         </div>
+    </div>
+    <div class="row center">
+        {% if med_data %}
+        {% for p in med_data %}
+        <div class="column">
+            <br>
+            <img src="{% static '/cim_users/drug.png' %}" alt="Patient image">
+            <h2><a>{{ p.drug_name}}</a></h2>
+            <h5><a>{{ p.prescribed_to}}</a></h5>
+            <h5><a>{{ p.stock }}</a></h5>
+            <button class="submit">Update</button>
+            <button class="submit">Delete</button>
+            <br><br>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="column">
+            <br>
+            <img src="{% static '/cim_users/drug.png' %}" alt="Patient image">
+            <h2><a>NO PRESCRIPTION YET</a></h2>
+            <br><br>
+        </div>
+        {% endif %}
     </div>
 </section>
 {% else %}
 <b>Not authorized</b>
+{% endif %}
 {% endblock %}
