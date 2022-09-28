@@ -80,31 +80,88 @@ def appointments(request):
     data = {'appointment_data':appointment_data,}
     return render(request, 'cim_users/appointments.html',data)
 
+def make_appointment(request):
+    if request.POST:
+        user_name = request.POST['name']
+        doctor = request.POST['doctor']
+        time = request.POST['time']
+        if Appointment.objects.filter(patient_name = user_name).first():
+            messages.info(request, 'Patient appointment already exists')
+            return redirect('/diagnosis')
+        else:
+            messages.success(request, 'Appointment created.')
+            user = Appointment.objects.create(patient_name =user_name,doctor=doctor,time=time)
+            # Redirect to a success page.
+            return redirect('/appointment')
+    else:
+        return render('/appointment')
+
+
+
 def diagnosis(request):
-    diagnosis_data = Diagnosis.objects.all().count()
-    data = {'diagnosis_data':diagnosis_data,}
-    return render(request, 'cim_users/diagnosis.html',data )
+    diagnosis_data = Diagnosis.objects.all()
+    data_count = Diagnosis.objects.all().count()
+    return render(request, 'cim_users/diagnosis.html',{'diagnosis_data':diagnosis_data,'data_count':data_count} )
+
+def diagnize(request):
+    if request.POST:
+        name = request.POST['Patient_Name']
+        user_test = request.POST['test']
+        diagnose = request.POST['diagnosis']
+        if Diagnosis.objects.filter(patient_name = name).first():
+            messages.info(request, 'Patient already diagnized')
+            return redirect('/diagnosis')
+        else:
+            messages.success(request, 'Patient record created.')
+            user = Diagnosis.objects.create(patient_name =name,test_name=user_test,diagnosis=diagnose)
+            # Redirect to a success page.
+            return redirect('/diagnosis')
+    else:
+        return render('/diagnosis')
 
 def treatment(request):
-    number = Medicine.objects.all().count()
-    return render(request, 'cim_users/pharmacy.html', {'number':number})
+    med_data = Medicine.objects.all()
+    number = med_data.count()
+    return render(request, 'cim_users/pharmacy.html', {'number':number,'med_data':med_data})
+
+def prescribe(request):
+    if request.POST:
+        user_name = request.POST['Patient_Name']
+        meds = request.POST['medicine']
+        drug_stock = request.POST['stock']
+        if Medicine.objects.filter(prescribed_to = user_name).first():
+            messages.info(request, 'Prescription record already exists')
+            return redirect('/treatment')
+        else:
+            messages.success(request, 'Prescription record created.')
+            prescribed = Medicine.objects.create(prescribed_to=user_name,drug_name=meds,stock=drug_stock)
+            drug_data = Medicine.objects.all()
+            # Redirect to a success page.
+            return redirect('/treatment')
+    else:
+        return render('/treatment')
 
 def add_patient(request):
-    user_name = request.POST['fullname']
-    user_age = request.POST['age']
-    ailment = request.POST['ailment']
-    user_email = request.POST['email']
-    if Patient.objects.filter(username = user_name).first():
-        messages.info(request, 'Patient record already exists')
-        return render(request, 'cim_users/patients.html')
+    if request.POST:
+        user_name = request.POST['Patient_Name']
+        ailment = request.POST['ailment']
+        diagnosis = request.POST['diagnosis']
+        if Patient.objects.filter(full_name = user_name).first():
+            messages.info(request, 'Patient record already exists')
+            return redirect('/patients')
+        else:
+            messages.success(request, 'Patient record created.')
+            user = Patient.objects.create(full_name =user_name,diagnosis=diagnosis,symptoms=ailment)
+            p_data = Patient.objects.all()
+            # Redirect to a success page.
+            return redirect('/patients')
     else:
-        messages.success(request, 'Patient record created.')
-        user = User.objects.create_user(user_name, user_email, user_age,ailment)
-        # Redirect to a success page.
         return render(request, 'cim_users/patients.html')
 
 def patients(request):
+    p_data = Patient.objects.all()
+    p_number = p_data.count()
     # Redirect to a success page.
-    return render(request, 'cim_users/patients.html')
+    return render(request, 'cim_users/patients.html',{'p_data':p_data,'p_number':p_number})
 
 
