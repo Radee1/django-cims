@@ -164,4 +164,22 @@ def patients(request):
     # Redirect to a success page.
     return render(request, 'cim_users/patients.html',{'p_data':p_data,'p_number':p_number})
 
+def delete_patient(request):
+    p_name = request.POST['Patient_Name']
+    patient = Patient.objects.get(full_name=p_name)
+    patient.delete()
+    messages.success(request, 'Patient record deleted.')
+    return redirect('/patients')
 
+def update_patient(request):
+    user_name = request.POST['Patient_Name']
+    p_id = request.POST['Patient_ID']
+    ailment = request.POST['ailment']
+    diagnosis = request.POST['diagnosis']
+    user = Patient.objects.get(id=p_id)
+    user.full_name = user_name
+    user.diagnosis=diagnosis
+    user.symptoms=ailment
+    user.save()
+    messages.success(request, 'Patient record updated.')
+    return redirect('/patients')
