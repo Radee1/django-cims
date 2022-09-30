@@ -142,6 +142,27 @@ def add_diagnosis(request):
     else:
         return render('/diagnosis')
 
+def delete_diagnosis(request):
+    d_name = request.POST['Patient_Name']
+    diagnosis = Diagnosis.objects.get(patient_name=d_name)
+    diagnosis.delete()
+    messages.success(request, 'Diagnosis deleted.')
+    return redirect('/diagnosis')
+
+def update_diagnosis(request):
+    patient_name = request.POST['Patient_Name']
+    d_id = request.POST['Diagnosis_ID']
+    test_name = request.POST['test_name']
+    diagnosis_name = request.POST['diagnosis']
+    time_of_visit = request.POST['time_of_visit']
+    diagnosis = Diagnosis.objects.get(id=d_id)
+    diagnosis.patient_name = patient_name
+    diagnosis.diagnosis=diagnosis_name
+    diagnosis.test_name=test_name
+    diagnosis.save()
+    messages.success(request, 'Diagnosis updated.')
+    return redirect('/diagnosis')
+
 def treatment(request):
     med_data = Medicine.objects.all()
     number = med_data.count()
