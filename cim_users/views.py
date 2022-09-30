@@ -120,23 +120,23 @@ def update_appointment(request):
 
 
 def diagnosis(request):
-    diagnosis_data = Diagnosis.objects.all()
-    data_count = Diagnosis.objects.all().count()
-    return render(request, 'cim_users/diagnosis.html',{'diagnosis_data':diagnosis_data,'data_count':data_count} )
+    d_data = Diagnosis.objects.all()
+    d_number = d_data.count()
+    return render(request, 'cim_users/diagnosis.html',{'d_data':d_data,'d_number':d_number} )
 
-def diagnize(request):
+def add_diagnosis(request):
     if request.POST:
         name = request.POST['Patient_Name']
-        test_name = request.POST['test']
+        test_name = request.POST['test_name']
         diagnosis = request.POST['diagnosis']
-        time_of_visit =request.POST['visit time']
+        time_of_visit =request.POST['time_of_visit']
 
         if Diagnosis.objects.filter(patient_name = name).first():
             messages.info(request, 'Patient already diagnized')
             return redirect('/diagnosis')
         else:
             messages.success(request, 'Diagnosis created.')
-            user = Diagnosis.objects.create(patient_name =name,test_name=user_test,diagnosis=diagnose)
+            user = Diagnosis.objects.create(patient_name =name,test_name=test_name,diagnosis=diagnosis,time_of_visit=time_of_visit)
             # Redirect to a success page.
             return redirect('/diagnosis')
     else:
