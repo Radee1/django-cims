@@ -21,23 +21,26 @@
             </div>
             <div class="column">
                 <br><br><br>
-                <img src="{% static '/cim_users/add.png' %}" alt="Appointment image" onclick="show('add_patient')">
+                <img src="{% static '/cim_users/add.png' %}" alt="Appointment image" onclick="show('make_appointment')">
                 <h2><a>Add </a></h2>
                 <br><br>
-                <div id="add_patient" style="display:none;">
-                    <form class="center form" method="POST" action="make_appointment/">
+                <div id="make_appointment" style="display:none;">
+                    <form class="center form" method="POST" action="#">
                         {% csrf_token %}
                         <div>
-                            <input type="text" name="name" placeholder="Fullname" required>
+                            <input type="text" name="Patient_Name" placeholder="Fullname" required>
                         </div>
                         <div>
-                            <input type="text" name="doctor" placeholder="Specialist" required>
+                            <input type="text" name="doctor" placeholder="Doctor's Name" required>
                         </div>
                         <div>
                             <input type="text" name="time" placeholder="Time" required>
                         </div>
                         <input type="submit" value="Make Appointment">
                     </form>
+                    <br>
+                    <button class="submit" onclick="hide('make_appointment')">Close</button>
+                    <br>
                 </div>
             </div>
             <div class="column">
