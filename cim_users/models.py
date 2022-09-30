@@ -27,3 +27,8 @@ class Medicine(models.Model):
     drug_name = models.CharField(max_length=80)
     stock = models.CharField(max_length=200)
     prescribed_to = models.CharField(max_length=200)
+
+class Team(models.Model):
+    full_name = models.CharField(max_length=80)
+    position = models.CharField(max_length=200)
+    department = models.CharField(max_length=200)

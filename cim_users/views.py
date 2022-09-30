@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 # user database
 from django.contrib.auth.models import User
-from .models import Diagnosis, Appointment, Medicine, Patient
+from .models import Diagnosis, Appointment, Medicine, Patient, Team
 # authenticate
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 
@@ -73,7 +73,44 @@ def services(request):
     return render(request, 'cim_users/services.html')
 
 def team(request):
-    return render(request, 'cim_users/team.html')
+    t_data = Team.objects.all()
+    t_number = t_data.count()
+    return render(request, 'cim_users/team.html',{'t_data':t_data,'t_number':t_number} )
+
+def add_member(request):
+    if request.POST:
+        full_name = request.POST['full_name']
+        position = request.POST['position']
+        department = request.POST['department']
+        if Team.objects.filter(full_name=full_name).first():
+            messages.info(request, 'Team member already exists')
+            return redirect('/team')
+        else:
+            messages.success(request, 'Team member successfully added.')
+            member = Team.objects.create(full_name=full_name,position=position,department=department)
+            return redirect('/team')
+    else:
+        return render('/team')
+
+def delete_member(request):
+    member_id = request.POST['member_id']
+    member = Team.objects.get(id=member_id)
+    member.delete()
+    messages.success(request, 'Member deleted.')
+    return redirect('/team')
+
+def update_member(request):
+    full_name = request.POST['full_name']
+    member_id = request.POST['Team_ID']
+    position= request.POST['position']
+    department = request.POST['department']
+    member = Team.objects.get(id=member_id)
+    member.full_name= full_name
+    member.position=position
+    member.department=department
+    member.save()
+    messages.success(request, 'Member details updated.')
+    return redirect('/team')
 
 def appointments(request):
     a_data = Appointment.objects.all()

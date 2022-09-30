@@ -7,43 +7,87 @@
 <section id="form">
     <div class="row center">
         <div class="column">
-            <br><br>
-            <img src="{% static '/cim_users/doc.png' %}" alt="Patient image">
-            <h2><a>Opio Peter</a></h2>
-            <p>Receptionist</p>
-            <br><br>
-        </div>
-
-        <div class="column">
-            <br><br>
-            <img src="{% static '/cim_users/doc.png' %}" alt="Diagnosis image">
-            <h2><a>Cris Anne</a></h2>
-            <p>Laboratory</p>
-            <br><br>
-        </div>
-
-        <div class="column">
-            <br><br>
-            <img src="{% static '/cim_users/doc.png' %}" alt="Medicine image">
-            <h2><a>Don Moe</a></h2>
-            <p>Pharmacist</p>
-            <br><br>
-        </div>
-
-        <div class="column">
-            <br><br>
-            <img src="{% static '/cim_users/doc.png' %}" alt="Appointment image">
-            <h2><a>Ric Man</a></h2>
-            <p>Doctor</p>
-            <br><br>
-        </div>
-        <div class="column">
-            <br><br>
-            <img src="{% static '/cim_users/doc.png' %}" alt="Appointment image">
+            <br><br><br>
+            <img src="{% static '/cim_users/add.png' %}" alt="team member image" onclick="show('add_team_member')">
             <h2><a>Add </a></h2>
-            <p>Team member</p>
+            <br><br>
+            <div id="add_team_member" style="display:none;">
+                <form class="center form" method="POST" action="/add_member">
+                    {% csrf_token %}
+                    <div>
+                        <input type="text" name="full_name" placeholder="Full Name" required>
+                    </div>
+                    <div>
+                        <input type="text" name="position" placeholder="Role" required>
+                    </div>
+                    <div>
+                        <input type="text" name="department" placeholder="Department" required>
+                    </div>
+                    <input type="submit" value="Add Member">
+                </form>
+                <br>
+                <button class="submit" onclick="hide('add_team_member')">Close</button>
+                <br>
+            </div>
+        </div>
+        {% if t_data %}
+        {% for t in t_data %}
+        <div class="column">
+            <br>
+            <img src="{% static '/cim_users/doc.png' %}" alt="Member image">
+            <h2><a>{{ t.full_name}}</a></h2>
+            <h5><a>{{ t.position}}</a></h5>
+            <h5><a>{{ t.department }}</a></h5>
+            <button class="submit" onclick="show('update_{{ t.full_name}}')">Update</button>
+            <button class="submit" onclick="show('delete_{{ t.full_name}}')">Delete</button>
+            <br><br>
+            <div id="update_{{ t.full_name}}" style="display:none;">
+                <form class="center form" method="POST" action="/update_member">
+                    {% csrf_token %}
+                    <div>
+                        <input type="hidden" value="{{t.id}}" name="Team_ID" placeholder="{{ t.id}}">
+                    </div>
+                    <div>
+                        <input type="text" value="{{t.full_name}}" name="full_name" placeholder="{{ t.full_name}}"
+                            required>
+                    </div>
+                    <div>
+                        <input type="text" value="{{t.position}}" name="position" placeholder="{{t.position}}" required>
+                    </div>
+                    <div>
+                        <input type="text" value="{{t.department}}" name="department" placeholder="{{ t.department}}"
+                            required>
+                    </div>
+                    <input type="submit" value="Update Member">
+                </form>
+                <br>
+                <button class="submit" onclick="hide('update_{{ t.full_name}}')">Close</button>
+                <br>
+            </div>
+            <br><br>
+            <div id="delete_{{ t.full_name}}" style="display:none;">
+                <form class="center form" method="POST" action="/delete_member">
+                    {% csrf_token %}
+                    <div>
+                        <input type="hidden" style="display:none;" name="member_id" value="{{t.id}}"
+                            placeholder="{{ t.id}}">
+                    </div>
+                    <input type="submit" value="Delete Member" onclick="say('Comfirm deletion')">
+                </form>
+                <br>
+                <button class="submit" onclick="hide('delete_{{ t.full_name}}')">Close</button>
+                <br>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="column">
+            <br>
+            <img src="{% static '/cim_users/doc.png' %}" alt="member image">
+            <h2><a>NO MEMBER YET</a></h2>
             <br><br>
         </div>
+        {% endif %}
     </div>
 </section>
 {% else %}
@@ -51,38 +95,25 @@
 
     <br>
     <div class="row center">
+        {% if t_data %}
+        {% for t in t_data %}
         <div class="column">
-            <br><br>
-            <img src="{% static '/cim_users/doc.png' %}" alt="Patient image">
-            <h2><a>Opio Peter</a></h2>
-            <p>Receptionist</p>
+            <br>
+            <img src="{% static '/cim_users/doc.png' %}" alt="Member image">
+            <h2><a>{{ t.full_name}}</a></h2>
+            <h5><a>{{ t.position}}</a></h5>
+            <h5><a>{{ t.department }}</a></h5>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="column">
+            <br>
+            <img src="{% static '/cim_users/doc.png' %}" alt="member image">
+            <h2><a>NO MEMBER YET</a></h2>
             <br><br>
         </div>
+        {% endif %}
 
-        <div class="column">
-            <br><br>
-            <img src="{% static '/cim_users/doc.png' %}" alt="Diagnosis image">
-            <h2><a>Cris Anne</a></h2>
-            <p>Laboratory</p>
-            <br><br>
-        </div>
-
-        <div class="column">
-            <br><br>
-            <img src="{% static '/cim_users/doc.png' %}" alt="Medicine image">
-            <h2><a>Don Moe</a></h2>
-            <p>Pharmacist</p>
-            <br><br>
-        </div>
-
-        <div class="column">
-            <br><br>
-            <img src="{% static '/cim_users/doc.png' %}" alt="Appointment image">
-            <h2><a>Ric Man</a></h2>
-            <p>Doctor</p>
-            <br><br>
-        </div>
-    </div>
 </section>
 {% endif %}
 <style type="text/css">
