@@ -16,7 +16,7 @@
             <div class="column">
                 <br><br><br>
                 <img src="{% static '/cim_users/her.png' %}" alt="Appointment image">
-                <h2><a>TOTAL : {{ data_count }} </a></h2>
+                <h2><a>TOTAL : {{ a_number }} </a></h2>
                 <br><br>
             </div>
             <div class="column">
@@ -25,10 +25,10 @@
                 <h2><a>Add </a></h2>
                 <br><br>
                 <div id="make_appointment" style="display:none;">
-                    <form class="center form" method="POST" action="#">
+                    <form class="center form" method="POST" action="/make_appointment">
                         {% csrf_token %}
                         <div>
-                            <input type="text" name="Patient_Name" placeholder="Fullname" required>
+                            <input type="text" name="Patient_Name" placeholder="Full Name" required>
                         </div>
                         <div>
                             <input type="text" name="doctor" placeholder="Doctor's Name" required>
@@ -51,13 +51,14 @@
             </div>
         </div>
         <div class="row center">
-            {% if p_data %}
-            {% for p in p_data %}
+            {% if a_data %}
+            {% for a in a_data %}
             <div class="column">
                 <br>
                 <img src="{% static '/cim_users/doc.png' %}" alt="Patient image">
-                <h2><a>{{ p.full_name}}</a></h2>
-                <h5><a>{{ p.diagnosis}}</a></h5>
+                <h2><a>{{ a.patient_name}}</a></h2>
+                <h5><a>{{ a.doctor}}</a></h5>
+                <h5><a>{{ a.time}}</a></h5>
                 <button class="submit">Update</button>
                 <button class="submit">Delete</button>
                 <br><br>

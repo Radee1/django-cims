@@ -76,25 +76,26 @@ def team(request):
     return render(request, 'cim_users/team.html')
 
 def appointments(request):
-    appointment_data = Appointment.objects.all().count()
-    data = {'appointment_data':appointment_data,}
-    return render(request, 'cim_users/appointments.html',data)
+    a_data = Appointment.objects.all()
+    a_number = a_data.count()
+    # Redirect to a success page.
+    return render(request, 'cim_users/appointments.html',{'a_data':a_data,'a_number':a_number})
 
 def make_appointment(request):
     if request.POST:
-        user_name = request.POST['name']
+        user_name = request.POST['Patient_Name']
         doctor = request.POST['doctor']
         time = request.POST['time']
         if Appointment.objects.filter(patient_name = user_name).first():
             messages.info(request, 'Patient appointment already exists')
-            return redirect('/diagnosis')
+            return redirect('/appointments')
         else:
             messages.success(request, 'Appointment created.')
             user = Appointment.objects.create(patient_name =user_name,doctor=doctor,time=time)
             # Redirect to a success page.
-            return redirect('/appointment')
+            return redirect('/appointments')
     else:
-        return render('/appointment')
+        return render('/appointments')
 
 
 
