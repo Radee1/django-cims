@@ -127,13 +127,15 @@ def diagnosis(request):
 def diagnize(request):
     if request.POST:
         name = request.POST['Patient_Name']
-        user_test = request.POST['test']
-        diagnose = request.POST['diagnosis']
+        test_name = request.POST['test']
+        diagnosis = request.POST['diagnosis']
+        time_of_visit =request.POST['visit time']
+
         if Diagnosis.objects.filter(patient_name = name).first():
             messages.info(request, 'Patient already diagnized')
             return redirect('/diagnosis')
         else:
-            messages.success(request, 'Patient record created.')
+            messages.success(request, 'Diagnosis created.')
             user = Diagnosis.objects.create(patient_name =name,test_name=user_test,diagnosis=diagnose)
             # Redirect to a success page.
             return redirect('/diagnosis')

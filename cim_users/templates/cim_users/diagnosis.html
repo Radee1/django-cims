@@ -20,25 +20,28 @@
         </div>
         <div class="column">
             <br><br><br>
-            <img src="{% static '/cim_users/add.png' %}" alt="Diagnosis image" onclick="show('add_patient')">
+            <img src="{% static '/cim_users/add.png' %}" alt="Diagnosis image" onclick="show('add_diagnosis')">
             <h2><a>Add </a></h2>
             <br><br>
-            <div id="add_patient" style="display:none;">
-                <form class="center form" method="POST" action="/add_patient/">
+            <div id="add_diagnosis" style="display:none;">
+                <form class="center form" method="POST" action="#">
                     {% csrf_token %}
                     <div>
-                        <input type="text" name="Patient_Name" placeholder="Fullname" required>
+                        <input type="text" name="Patient_Name" placeholder="Patient Name" required>
                     </div>
                     <div>
-                        <input type="text" name="ailment" placeholder="Ailment" required>
+                        <input type="text" name="test_name" placeholder="Test Name" required>
                     </div>
                     <div>
                         <input type="text" name="diagnosis" placeholder="Diagnosis" required>
                     </div>
-                    <input type="submit" value="Add Patient">
+                    <div>
+                        <input type="text" name="time_of_visit" placeholder="Visit Time" required>
+                    </div>
+                    <input type="submit" value="Add Diagnosis">
                 </form>
                 <br>
-                <button class="submit" onclick="hide('add_patient')">Close</button>
+                <button class="submit" onclick="hide('add_diagnosis')">Close</button>
                 <br>
             </div>
         </div>
