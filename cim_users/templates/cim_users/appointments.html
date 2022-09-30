@@ -59,10 +59,47 @@
                 <h2><a>{{ a.patient_name}}</a></h2>
                 <h5><a>{{ a.doctor}}</a></h5>
                 <h5><a>{{ a.time}}</a></h5>
-                <button class="submit">Update</button>
-                <button class="submit">Delete</button>
+                <button class="submit" onclick="show('update_{{ a.patient_name}}')">Update</button>
+                <button class="submit" onclick="show('delete_{{ a.patient_name}}')">Delete</button>
                 <br><br>
+                <div id="update_{{ a.patient_name}}" style="display:none;">
+                    <form class="center form" method="POST" action="/update_appointment">
+                        {% csrf_token %}
+                        <div>
+                            <input type="hidden" value="{{a.id}}" name="Appointment_ID" placeholder="{{ a.id}}">
+                        </div>
+                        <div>
+                            <input type="text" value="{{a.patient_name}}" name="Patient_Name"
+                                placeholder="{{ a.patient_name}}" required>
+                        </div>
+                        <div>
+                            <input type="text" value="{{a.doctor}}" name="doctor" placeholder="{{a.doctor}}" required>
+                        </div>
+                        <div>
+                            <input type="text" value="{{a.time}}" name="time" placeholder="{{ a.time}}" required>
+                        </div>
+                        <input type="submit" value="Update Appointment">
+                    </form>
+                    <br>
+                    <button class="submit" onclick="hide('update_{{ a.patient_name}}')">Close</button>
+                    <br>
+                </div>
+                <br><br>
+                <div id="delete_{{ a.patient_name}}" style="display:none;">
+                    <form class="center form" method="POST" action="/delete_appointment">
+                        {% csrf_token %}
+                        <div>
+                            <input type="text" style="display:none;" name="Patient_Name" value="{{a.patient_name}}"
+                                placeholder="{{ a.patient_name}}">
+                        </div>
+                        <input type="submit" value="Delete Appointment" onclick="say('Comfirm deletion')">
+                    </form>
+                    <br>
+                    <button class="submit" onclick="hide('delete_{{ a.patient_name}}')">Close</button>
+                    <br>
+                </div>
             </div>
+
             {% endfor %}
             {% else %}
             <div class="column">

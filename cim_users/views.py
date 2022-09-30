@@ -97,6 +97,26 @@ def make_appointment(request):
     else:
         return render('/appointments')
 
+def delete_appointment(request):
+    a_name = request.POST['Patient_Name']
+    appointment = Appointment.objects.get(patient_name=a_name)
+    appointment.delete()
+    messages.success(request, 'Appointment deleted.')
+    return redirect('/appointments')
+
+def update_appointment(request):
+    user_name = request.POST['Patient_Name']
+    a_id = request.POST['Appointment_ID']
+    doctor = request.POST['doctor']
+    time = request.POST['time']
+    appointment = Appointment.objects.get(id=a_id)
+    appointment.patient_name = user_name
+    appointment.doctor=doctor
+    appointment.time=time
+    appointment.save()
+    messages.success(request, 'Appointment updated.')
+    return redirect('/appointments')
+
 
 
 def diagnosis(request):
