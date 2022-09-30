@@ -21,8 +21,11 @@ urlpatterns = [
     path('update_diagnosis', views.update_diagnosis, name='update_diagnosis'),
     path('delete_diagnosis', views.delete_diagnosis, name='delete_diagnosis'),
     path('treatment', views.treatment, name='treatment'),
-    path('add_patient/', views.add_patient, name='add_patient/'),
+    path('add_treatment', views.add_treatment, name='add_treatment'),
+    path('update_treatment', views.update_treatment, name='update_treatment'),
+    path('delete_treatment', views.delete_treatment, name='delete_treatment'),
     path('patients/', views.patients, name='patients/'),
+    path('add_patient/', views.add_patient, name='add_patient/'),
     path('update_patient', views.update_patient, name='update_patient'),
     path('delete_patient', views.delete_patient, name='delete_patient'),
 ]

@@ -168,22 +168,42 @@ def treatment(request):
     number = med_data.count()
     return render(request, 'cim_users/pharmacy.html', {'number':number,'med_data':med_data})
 
-def prescribe(request):
+def add_treatment(request):
     if request.POST:
-        user_name = request.POST['Patient_Name']
-        meds = request.POST['medicine']
-        drug_stock = request.POST['stock']
-        if Medicine.objects.filter(prescribed_to = user_name).first():
-            messages.info(request, 'Prescription record already exists')
+        drug_name = request.POST['medicine']
+        prescribed_to = request.POST['Patient_Name']
+        stock = request.POST['stock']
+        if Medicine.objects.filter(prescribed_to = prescribed_to).first():
+            messages.info(request, 'Prescription already exists')
             return redirect('/treatment')
         else:
-            messages.success(request, 'Prescription record created.')
-            prescribed = Medicine.objects.create(prescribed_to=user_name,drug_name=meds,stock=drug_stock)
+            messages.success(request, 'Prescription created.')
+            prescribed = Medicine.objects.create(prescribed_to=prescribed_to,drug_name=drug_name,stock=stock)
             drug_data = Medicine.objects.all()
             # Redirect to a success page.
             return redirect('/treatment')
     else:
         return render('/treatment')
+
+def delete_treatment(request):
+    prescribed_to = request.POST['Patient_Name']
+    treatment = Medicine.objects.get(prescribed_to=prescribed_to)
+    treatment.delete()
+    messages.success(request, 'Prescription deleted.')
+    return redirect('/treatment')
+
+def update_treatment(request):
+    prescribed_to = request.POST['Patient_Name']
+    treatment_id = request.POST['Treatment_ID']
+    drug_name= request.POST['medicine']
+    stock = request.POST['stock']
+    treatment = Medicine.objects.get(id=treatment_id)
+    treatment.prescribed_to = prescribed_to
+    treatment.drug_name=drug_name
+    treatment.stock=stock
+    treatment.save()
+    messages.success(request, 'Prescription updated.')
+    return redirect('/treatment')
 
 def add_patient(request):
     if request.POST:

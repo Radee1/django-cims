@@ -24,7 +24,7 @@
             <h2><a>Add </a></h2>
             <br><br>
             <div id="add_treatment" style="display:none;">
-                <form class="center form" method="POST" action="#">
+                <form class="center form" method="POST" action="/add_treatment">
                     {% csrf_token %}
                     <div>
                         <input type="text" name="Patient_Name" placeholder="Prescribed To" required>
@@ -51,16 +51,53 @@
     </div>
     <div class="row center">
         {% if med_data %}
-        {% for p in med_data %}
+        {% for m in med_data %}
         <div class="column">
             <br>
             <img src="{% static '/cim_users/drug.png' %}" alt="Patient image">
-            <h2><a>{{ p.drug_name}}</a></h2>
-            <h5><a>{{ p.prescribed_to}}</a></h5>
-            <h5><a>{{ p.stock }}</a></h5>
-            <button class="submit">Update</button>
-            <button class="submit">Delete</button>
+            <h2><a>{{ m.drug_name}}</a></h2>
+            <h5><a>{{ m.prescribed_to}}</a></h5>
+            <h5><a>{{ m.stock }}</a></h5>
+            <button class="submit" onclick="show('update_{{ m.prescribed_to}}')">Update</button>
+            <button class="submit" onclick="show('delete_{{ m.prescribed_to}}')">Delete</button>
             <br><br>
+            <div id="update_{{ m.prescribed_to}}" style="display:none;">
+                <form class="center form" method="POST" action="/update_treatment">
+                    {% csrf_token %}
+                    <div>
+                        <input type="hidden" value="{{m.id}}" name="Treatment_ID" placeholder="{{ m.id}}">
+                    </div>
+                    <div>
+                        <input type="text" value="{{m.prescribed_to}}" name="Patient_Name"
+                            placeholder="{{ m.prescribed_to}}" required>
+                    </div>
+                    <div>
+                        <input type="text" value="{{m.drug_name}}" name="medicine" placeholder="{{m.drug_name}}"
+                            required>
+                    </div>
+                    <div>
+                        <input type="text" value="{{m.stock}}" name="stock" placeholder="{{ m.stock}}" required>
+                    </div>
+                    <input type="submit" value="Update Prescription">
+                </form>
+                <br>
+                <button class="submit" onclick="hide('update_{{ m.prescribed_to}}')">Close</button>
+                <br>
+            </div>
+            <br><br>
+            <div id="delete_{{ m.prescribed_to}}" style="display:none;">
+                <form class="center form" method="POST" action="/delete_treatment">
+                    {% csrf_token %}
+                    <div>
+                        <input type="text" style="display:none;" name="Patient_Name" value="{{m.prescribed_to}}"
+                            placeholder="{{ m.prescribed_to}}">
+                    </div>
+                    <input type="submit" value="Delete Prescription" onclick="say('Comfirm deletion')">
+                </form>
+                <br>
+                <button class="submit" onclick="hide('delete_{{ m.prescribed_to}}')">Close</button>
+                <br>
+            </div>
         </div>
         {% endfor %}
         {% else %}
