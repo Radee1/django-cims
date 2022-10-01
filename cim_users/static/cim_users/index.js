@@ -10,7 +10,7 @@ function show(y) {
     target.setAttribute("style", "display:inline;");
 }
 
-//Display message to user
+
 function say(x) {
     alert(x);
 }
