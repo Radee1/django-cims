@@ -183,7 +183,7 @@ To manage patient information and enable tracking of health care services
 ------
 ### Version Control
 
-* The site was created using the Visual Studio Code editor and pushed to github to the remote repository covid-vaccination-survey-data-analyser.
+* The site was created using the Visual Studio Code editor and pushed to github to the remote repository django-cims.
 
 The following git commands were used throughout development to push code to the remote repo:
 
