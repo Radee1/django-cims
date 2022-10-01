@@ -42,7 +42,7 @@ def login_user(request):
             messages.error(request, 'Wrong Username or Password.')
             return render(request, 'cim_users/user_login.html')
     else:
-        messages.success(request, 'Account created.')
+        messages.success(request, 'Credentials do not exist.')
         return render(request, 'cim_users/user_login.html')
 
 @login_required
