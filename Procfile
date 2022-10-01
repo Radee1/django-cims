@@ -1,1 +1,1 @@
-web: gunicorn DJANGO-CIMS.wsgi
+web: gunicorn django-cims.wsgi --log-file -
