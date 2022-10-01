@@ -1,1 +1,1 @@
-web: gunicorn django-cims.wsgi
+web: gunicorn DJANGO-CIMS.wsgi
