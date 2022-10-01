@@ -31,9 +31,10 @@ def login_user(request):
         print("This username exists")
         user = authenticate(request, username=user_name, password=user_password)
         if user is not None:
+            Welcome = user_name+' Logged in Successfully'
             # login
             auth_login(request,user)
-            messages.success(request, 'Login Success')
+            messages.success(request, Welcome)
             #redirect
             return redirect('/home')
         else:
