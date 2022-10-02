@@ -136,6 +136,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+WHITENOISE_USE_FINDERS = True
+
 # STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
