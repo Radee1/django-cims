@@ -28,10 +28,18 @@
                     <form class="center form" method="POST" action="/make_appointment">
                         {% csrf_token %}
                         <div>
-                            <input type="text" name="Patient_Name" placeholder="Full Name" required>
+                            <input type="text" name="Patient_Name" placeholder="Patient Name" required>
                         </div>
                         <div>
-                            <input type="text" name="doctor" placeholder="Doctor's Name" required>
+                            <input placeholder="Select Doctor's Name" disabled>
+                            <select name="doctor">
+                                <option>
+                                    Dr. John Doe
+                                </option>
+                                <option>
+                                    Dr. Jane Dee
+                                </option>
+                            </select>
                         </div>
                         <div>
                             <input type="text" name="time" placeholder="Time" required>
