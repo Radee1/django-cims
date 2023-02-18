@@ -31,15 +31,19 @@
                             <input type="text" name="Patient_Name" placeholder="Patient Name" required>
                         </div>
                         <div>
+                            {% if d_data %}
+                            {% for d in d_data %}
                             <input placeholder="Select Doctor's Name" disabled>
-                            <select name="doctor">
-                                <option>
-                                    Dr. John Doe
-                                </option>
-                                <option>
-                                    Dr. Jane Dee
+                            <select class="form" name="doctor">
+                                <option value="{{ d.full_name }}">
+                                    Dr. {{ d.full_name }} | {{ d.department }}
                                 </option>
                             </select>
+                            {% endfor %}
+                            {% else %}
+                            <small><b>No Doctor Available</b></small>
+                            <input placeholder="Input Desired Doctor's Name" disabled>
+                            {% endif %}
                         </div>
                         <div>
                             <input type="text" name="time" placeholder="Time" required>
