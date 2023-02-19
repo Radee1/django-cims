@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 # flash messages
 from django.contrib import messages
@@ -10,19 +9,25 @@ from .models import Diagnosis, Appointment, Medicine, Patient, Team
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 
 # Create your views here.
+
+
 def index(request):
     return render(request, 'cim_users/user_login.html')
+
 
 def home(request):
     patients = Patient.objects.all().count()
     diagnosis = Diagnosis.objects.all().count()
-    medicine  = Medicine.objects.all().count()
+    medicine = Medicine.objects.all().count()
     appointments = Appointment.objects.all().count()
-    return render(request, 'cim_users/index.html',{'patients':patients,'diagnosis':diagnosis,'medicine':medicine,'appointments':appointments})
+    return render(request, 'cim_users/index.html', {'patients': patients, 'diagnosis': diagnosis, 'medicine': medicine, 'appointments': appointments})
 
-#loging
+# loging
+
+
 def login(request):
     return render(request, 'cim_users/user_login.html')
+
 
 def login_user(request):
     user_name = request.POST['username']
@@ -45,11 +50,13 @@ def login_user(request):
         messages.success(request, 'Credentials do not exist.')
         return render(request, 'cim_users/user_login.html')
 
+
 @login_required
 def logout_user(request):
     auth_logout(request)
     messages.success(request, 'You have logged out. Bye!')
     return redirect('/login')
+
 
 def create_user(request):
     user_name = request.POST['username']
@@ -64,6 +71,7 @@ def create_user(request):
         # Redirect to a success page.
         return render(request, 'cim_users/user_login.html')
 
+
 def create_user_page(request):
     # Redirect to a success page.
     return render(request, 'cim_users/user_create.html')
@@ -73,10 +81,12 @@ def create_user_page(request):
 def services(request):
     return render(request, 'cim_users/services.html')
 
+
 def team(request):
     t_data = Team.objects.all()
     t_number = t_data.count()
     return render(request, 'cim_users/team.html',{'t_data':t_data,'t_number':t_number} )
+
 
 def add_member(request):
     if request.POST:
@@ -93,12 +103,14 @@ def add_member(request):
     else:
         return render('/team')
 
+
 def delete_member(request):
     member_id = request.POST['member_id']
     member = Team.objects.get(id=member_id)
     member.delete()
     messages.success(request, 'Member deleted.')
     return redirect('/team')
+
 
 def update_member(request):
     full_name = request.POST['full_name']
@@ -113,6 +125,7 @@ def update_member(request):
     messages.success(request, 'Member details updated.')
     return redirect('/team')
 
+
 def appointments(request):
     a_data = Appointment.objects.all()
     a_number = a_data.count()
@@ -120,6 +133,7 @@ def appointments(request):
     d_data = Team.objects.all().filter(position='Doctor')
     # Redirect to a success page.
     return render(request, 'cim_users/appointments.html',{'a_data':a_data,'d_data':d_data})
+
 
 def make_appointment(request):
     if request.POST:
@@ -137,12 +151,14 @@ def make_appointment(request):
     else:
         return render('/appointments')
 
+
 def delete_appointment(request):
     a_name = request.POST['Patient_Name']
     appointment = Appointment.objects.get(patient_name=a_name)
     appointment.delete()
     messages.success(request, 'Appointment deleted.')
     return redirect('/appointments')
+
 
 def update_appointment(request):
     user_name = request.POST['Patient_Name']
@@ -158,11 +174,11 @@ def update_appointment(request):
     return redirect('/appointments')
 
 
-
 def diagnosis(request):
     d_data = Diagnosis.objects.all()
     d_number = d_data.count()
     return render(request, 'cim_users/diagnosis.html',{'d_data':d_data,'d_number':d_number} )
+
 
 def add_diagnosis(request):
     if request.POST:
@@ -182,12 +198,14 @@ def add_diagnosis(request):
     else:
         return render('/diagnosis')
 
+
 def delete_diagnosis(request):
     d_name = request.POST['Patient_Name']
     diagnosis = Diagnosis.objects.get(patient_name=d_name)
     diagnosis.delete()
     messages.success(request, 'Diagnosis deleted.')
     return redirect('/diagnosis')
+
 
 def update_diagnosis(request):
     patient_name = request.POST['Patient_Name']
@@ -203,10 +221,12 @@ def update_diagnosis(request):
     messages.success(request, 'Diagnosis updated.')
     return redirect('/diagnosis')
 
+
 def treatment(request):
     med_data = Medicine.objects.all()
     number = med_data.count()
     return render(request, 'cim_users/pharmacy.html', {'number':number,'med_data':med_data})
+
 
 def add_treatment(request):
     if request.POST:
@@ -225,12 +245,14 @@ def add_treatment(request):
     else:
         return render('/treatment')
 
+
 def delete_treatment(request):
     prescribed_to = request.POST['Patient_Name']
     treatment = Medicine.objects.get(prescribed_to=prescribed_to)
     treatment.delete()
     messages.success(request, 'Prescription deleted.')
     return redirect('/treatment')
+
 
 def update_treatment(request):
     prescribed_to = request.POST['Patient_Name']
@@ -244,6 +266,7 @@ def update_treatment(request):
     treatment.save()
     messages.success(request, 'Prescription updated.')
     return redirect('/treatment')
+
 
 def add_patient(request):
     if request.POST:
@@ -262,11 +285,13 @@ def add_patient(request):
     else:
         return render(request, 'cim_users/patients.html')
 
+
 def patients(request):
     p_data = Patient.objects.all()
     p_number = p_data.count()
     # Redirect to a success page.
     return render(request, 'cim_users/patients.html',{'p_data':p_data,'p_number':p_number})
+
 
 def delete_patient(request):
     p_name = request.POST['Patient_Name']
@@ -274,6 +299,7 @@ def delete_patient(request):
     patient.delete()
     messages.success(request, 'Patient record deleted.')
     return redirect('/patients')
+
 
 def update_patient(request):
     user_name = request.POST['Patient_Name']
