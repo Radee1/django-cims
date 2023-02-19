@@ -32,15 +32,15 @@ def login(request):
 def login_user(request):
     user_name = request.POST['username']
     user_password = request.POST['password']
-    if User.objects.filter(username = user_name).first():
+    if User.objects.filter(username=user_name).first():
         print("This username exists")
         user = authenticate(request, username=user_name, password=user_password)
         if user is not None:
             Welcome = user_name+' Logged in Successfully'
             # login
-            auth_login(request,user)
+            auth_login(request, user)
             messages.success(request, Welcome)
-            #redirect
+            # redirect
             return redirect('/home')
         else:
             # No authenticated the credentials
@@ -62,12 +62,11 @@ def create_user(request):
     user_name = request.POST['username']
     user_password = request.POST['password']
     user_email = request.POST['email']
-    if User.objects.filter(username = user_name).first():
+    if User.objects.filter(username=user_name).first():
         messages.info(request, 'Account already exists')
         return render(request, 'cim_users/user_create.html')
     else:
         messages.success(request, 'Account created.')
-        user = User.objects.create_user(user_name, user_email, user_password)
         # Redirect to a success page.
         return render(request, 'cim_users/user_login.html')
 
@@ -98,7 +97,7 @@ def add_member(request):
             return redirect('/team')
         else:
             messages.success(request, 'Team member successfully added.')
-            member = Team.objects.create(full_name=full_name,position=position,department=department)
+            member = Team.objects.create(full_name=full_name, position=position, department=department)
             return redirect('/team')
     else:
         return render('/team')
@@ -115,12 +114,12 @@ def delete_member(request):
 def update_member(request):
     full_name = request.POST['full_name']
     member_id = request.POST['Team_ID']
-    position= request.POST['position']
+    position = request.POST['position']
     department = request.POST['department']
     member = Team.objects.get(id=member_id)
-    member.full_name= full_name
-    member.position=position
-    member.department=department
+    member.full_name = full_name
+    member.position = position
+    member.department = department
     member.save()
     messages.success(request, 'Member details updated.')
     return redirect('/team')
@@ -128,11 +127,10 @@ def update_member(request):
 
 def appointments(request):
     a_data = Appointment.objects.all()
-    a_number = a_data.count()
     # doctors data
     d_data = Team.objects.all().filter(position='Doctor')
     # Redirect to a success page.
-    return render(request, 'cim_users/appointments.html',{'a_data':a_data,'d_data':d_data})
+    return render(request, 'cim_users/appointments.html', {'a_data': a_data, 'd_data': d_data})
 
 
 def make_appointment(request):
@@ -140,12 +138,11 @@ def make_appointment(request):
         user_name = request.POST['Patient_Name']
         doctor = request.POST['doctor']
         time = request.POST['time']
-        if Appointment.objects.filter(patient_name = user_name).first():
+        if Appointment.objects.filter(patient_name=user_name).first():
             messages.info(request, 'Patient appointment already exists')
             return redirect('/appointments')
         else:
             messages.success(request, 'Appointment created.')
-            user = Appointment.objects.create(patient_name =user_name,doctor=doctor,time=time)
             # Redirect to a success page.
             return redirect('/appointments')
     else:
@@ -167,8 +164,8 @@ def update_appointment(request):
     time = request.POST['time']
     appointment = Appointment.objects.get(id=a_id)
     appointment.patient_name = user_name
-    appointment.doctor=doctor
-    appointment.time=time
+    appointment.doctor = doctor
+    appointment.time = time
     appointment.save()
     messages.success(request, 'Appointment updated.')
     return redirect('/appointments')
@@ -177,7 +174,7 @@ def update_appointment(request):
 def diagnosis(request):
     d_data = Diagnosis.objects.all()
     d_number = d_data.count()
-    return render(request, 'cim_users/diagnosis.html',{'d_data':d_data,'d_number':d_number} )
+    return render(request, 'cim_users/diagnosis.html',{'d_data': d_data, 'd_number': d_number} )
 
 
 def add_diagnosis(request):
@@ -185,14 +182,13 @@ def add_diagnosis(request):
         name = request.POST['Patient_Name']
         test_name = request.POST['test_name']
         diagnosis = request.POST['diagnosis']
-        time_of_visit =request.POST['time_of_visit']
+        time_of_visit = request.POST['time_of_visit']
 
-        if Diagnosis.objects.filter(patient_name = name).first():
+        if Diagnosis.objects.filter(patient_name=name).first():
             messages.info(request, 'Patient already diagnized')
             return redirect('/diagnosis')
         else:
             messages.success(request, 'Diagnosis created.')
-            user = Diagnosis.objects.create(patient_name =name,test_name=test_name,diagnosis=diagnosis,time_of_visit=time_of_visit)
             # Redirect to a success page.
             return redirect('/diagnosis')
     else:
@@ -212,11 +208,10 @@ def update_diagnosis(request):
     d_id = request.POST['Diagnosis_ID']
     test_name = request.POST['test_name']
     diagnosis_name = request.POST['diagnosis']
-    time_of_visit = request.POST['time_of_visit']
     diagnosis = Diagnosis.objects.get(id=d_id)
     diagnosis.patient_name = patient_name
-    diagnosis.diagnosis=diagnosis_name
-    diagnosis.test_name=test_name
+    diagnosis.diagnosis = diagnosis_name
+    diagnosis.test_name = test_name
     diagnosis.save()
     messages.success(request, 'Diagnosis updated.')
     return redirect('/diagnosis')
@@ -225,7 +220,7 @@ def update_diagnosis(request):
 def treatment(request):
     med_data = Medicine.objects.all()
     number = med_data.count()
-    return render(request, 'cim_users/pharmacy.html', {'number':number,'med_data':med_data})
+    return render(request, 'cim_users/pharmacy.html', {'number': number, 'med_data': med_data})
 
 
 def add_treatment(request):
@@ -233,12 +228,12 @@ def add_treatment(request):
         drug_name = request.POST['medicine']
         prescribed_to = request.POST['Patient_Name']
         stock = request.POST['stock']
-        if Medicine.objects.filter(prescribed_to = prescribed_to).first():
+        if Medicine.objects.filter(prescribed_to=prescribed_to).first():
             messages.info(request, 'Prescription already exists')
             return redirect('/treatment')
         else:
             messages.success(request, 'Prescription created.')
-            prescribed = Medicine.objects.create(prescribed_to=prescribed_to,drug_name=drug_name,stock=stock)
+            prescribed = Medicine.objects.create(prescribed_to=prescribed_to, drug_name=drug_name, stock=stock)
             drug_data = Medicine.objects.all()
             # Redirect to a success page.
             return redirect('/treatment')
@@ -257,12 +252,12 @@ def delete_treatment(request):
 def update_treatment(request):
     prescribed_to = request.POST['Patient_Name']
     treatment_id = request.POST['Treatment_ID']
-    drug_name= request.POST['medicine']
+    drug_name = request.POST['medicine']
     stock = request.POST['stock']
     treatment = Medicine.objects.get(id=treatment_id)
     treatment.prescribed_to = prescribed_to
-    treatment.drug_name=drug_name
-    treatment.stock=stock
+    treatment.drug_name = drug_name
+    treatment.stock = stock
     treatment.save()
     messages.success(request, 'Prescription updated.')
     return redirect('/treatment')
@@ -273,13 +268,11 @@ def add_patient(request):
         user_name = request.POST['Patient_Name']
         ailment = request.POST['ailment']
         diagnosis = request.POST['diagnosis']
-        if Patient.objects.filter(full_name = user_name).first():
+        if Patient.objects.filter(full_name=user_name).first():
             messages.info(request, 'Patient record already exists')
             return redirect('/patients')
         else:
             messages.success(request, 'Patient record created.')
-            user = Patient.objects.create(full_name =user_name,diagnosis=diagnosis,symptoms=ailment)
-            p_data = Patient.objects.all()
             # Redirect to a success page.
             return redirect('/patients')
     else:
@@ -290,7 +283,7 @@ def patients(request):
     p_data = Patient.objects.all()
     p_number = p_data.count()
     # Redirect to a success page.
-    return render(request, 'cim_users/patients.html',{'p_data':p_data,'p_number':p_number})
+    return render(request, 'cim_users/patients.html', {'p_data': p_data, 'p_number': p_number})
 
 
 def delete_patient(request):
@@ -308,8 +301,8 @@ def update_patient(request):
     diagnosis = request.POST['diagnosis']
     user = Patient.objects.get(id=p_id)
     user.full_name = user_name
-    user.diagnosis=diagnosis
-    user.symptoms=ailment
+    user.diagnosis = diagnosis
+    user.symptoms = ailment
     user.save()
     messages.success(request, 'Patient record updated.')
     return redirect('/patients')
