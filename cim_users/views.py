@@ -186,12 +186,12 @@ def add_diagnosis(request):
         name = request.POST['Patient_Name']
         test_name = request.POST['test_name']
         diagnosis = request.POST['diagnosis']
-        time_of_visit = request.POST['time_of_visit']
 
         if Diagnosis.objects.filter(patient_name=name).first():
             messages.info(request, 'Patient already diagnized')
             return redirect('cim_users:diagnosis')
         else:
+            Diagnosis.objects.create(patient_name=name, test_name=test_name, diagnosis=diagnosis)
             messages.success(request, 'Diagnosis created.')
             # Redirect to a success page.
             return redirect('cim_users:diagnosis')
