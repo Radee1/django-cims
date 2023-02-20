@@ -76,7 +76,6 @@ def create_user_page(request):
     return render(request, 'cim_users/user_create.html')
 
 
-
 def services(request):
     return render(request, 'cim_users/services.html')
 
@@ -84,7 +83,7 @@ def services(request):
 def team(request):
     t_data = Team.objects.all()
     t_number = t_data.count()
-    return render(request, 'cim_users/team.html',{'t_data':t_data,'t_number':t_number} )
+    return render(request, 'cim_users/team.html', {'t_data': t_data, 't_number': t_number})
 
 
 def add_member(request):
@@ -174,7 +173,7 @@ def update_appointment(request):
 def diagnosis(request):
     d_data = Diagnosis.objects.all()
     d_number = d_data.count()
-    return render(request, 'cim_users/diagnosis.html',{'d_data': d_data, 'd_number': d_number} )
+    return render(request, 'cim_users/diagnosis.html', {'d_data': d_data, 'd_number': d_number})
 
 
 def add_diagnosis(request):

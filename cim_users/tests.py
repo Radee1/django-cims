@@ -48,6 +48,7 @@ class DiagnosisTestCase(TestCase):
 
     def test_diagnosis_can_be_created(self):
         """Diagnosis can be created."""
+
         d1 = Diagnosis.objects.get(patient_name="John Doe")
         d2 = Diagnosis.objects.get(patient_name="Jane Din")
         self.assertEqual(d1.patient_name, 'John Doe')
