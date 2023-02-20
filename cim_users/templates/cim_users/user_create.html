@@ -3,7 +3,7 @@
 <br><br>
 <section id="form">
     <div>
-        <form class="center" method="POST" enctype="multipart/form-data" action="/create_user">
+        <form class="center" method="POST" enctype="multipart/form-data" action="{% url 'cim_users:create_user' %}">
             {% csrf_token %}
             <div>
                 <label>Username</label><br>

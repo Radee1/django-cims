@@ -9,7 +9,7 @@
         <div class="column">
             <br><br><br>
             <img src="{% static '/cim_users/left.png' %}" alt="Arrow image">
-            <h2><a href="/home">Back to dashboard</a></h2>
+            <h2><a href="{% url 'cim_users:home' %}">Back to dashboard</a></h2>
             <br><br>
         </div>
         <div class="column">
@@ -24,7 +24,7 @@
             <h2><a>Add </a></h2>
             <br><br>
             <div id="add_treatment" style="display:none;">
-                <form class="center form" method="POST" action="/add_treatment">
+                <form class="center form" method="POST" action="{% url 'cim_users:add_treatment' %}">
                     {% csrf_token %}
                     <div>
                         <input type="text" name="Patient_Name" placeholder="Prescribed To" required>
@@ -45,7 +45,7 @@
         <div class="column">
             <br><br><br>
             <img src="{% static '/cim_users/right.png' %}" alt=" right Arrow image">
-            <h2><a href="/patients">Next</a></h2>
+            <h2><a href="{% url 'cim_users:patients' %}">Next</a></h2>
             <br><br>
         </div>
     </div>
@@ -62,7 +62,7 @@
             <button class="submit" onclick="show('delete_{{ m.prescribed_to}}')">Delete</button>
             <br><br>
             <div id="update_{{ m.prescribed_to}}" style="display:none;">
-                <form class="center form" method="POST" action="/update_treatment">
+                <form class="center form" method="POST" action="{% url 'cim_users:update_treatment' %}">
                     {% csrf_token %}
                     <div>
                         <input type="hidden" value="{{m.id}}" name="Treatment_ID" placeholder="{{ m.id}}">
@@ -86,7 +86,7 @@
             </div>
             <br><br>
             <div id="delete_{{ m.prescribed_to}}" style="display:none;">
-                <form class="center form" method="POST" action="/delete_treatment">
+                <form class="center form" method="POST" action="{% url 'cim_users:delete_treatment' %}">
                     {% csrf_token %}
                     <div>
                         <input type="text" style="display:none;" name="Patient_Name" value="{{m.prescribed_to}}"

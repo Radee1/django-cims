@@ -10,7 +10,7 @@
             <div class="column">
                 <br><br><br>
                 <img src="{% static '/cim_users/left.png' %}" alt="left arrow image">
-                <h2><a href="/home">Back to dashboard</a></h2>
+                <h2><a href="{% url 'cim_users:home' %}">Back to dashboard</a></h2>
                 <br><br>
             </div>
             <div class="column">
@@ -58,7 +58,7 @@
             <div class="column">
                 <br><br><br>
                 <img src="{% static '/cim_users/right.png' %}" alt="right arrow image">
-                <h2><a href="/diagnosis">Next</a></h2>
+                <h2><a href="{% url 'cim_users:diagnosis' %}">Next</a></h2>
                 <br><br>
             </div>
         </div>
