@@ -21,5 +21,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('cim_users/', include("cim_users.urls", namespace="cim_users")),
-    path('patients/', include("patients.urls", namespace="patients")),
 ]

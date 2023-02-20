@@ -145,6 +145,7 @@ def make_appointment(request):
             messages.info(request, 'Patient appointment already exists')
             return redirect('cim_users:appointments')
         else:
+            Appointment.objects.create(patient_name=user_name, doctor=doctor, time=time)
             messages.success(request, 'Appointment created.')
             # Redirect to a success page.
             return redirect('cim_users:appointments')
@@ -270,11 +271,11 @@ def add_patient(request):
     if request.POST:
         user_name = request.POST['Patient_Name']
         ailment = request.POST['ailment']
-        diagnosis = request.POST['diagnosis']
         if Patient.objects.filter(full_name=user_name).first():
             messages.info(request, 'Patient record already exists')
             return redirect('cim_users:patients')
         else:
+            patient = Patient.objects.create(full_name=user_name, symptoms=ailment)
             messages.success(request, 'Patient record created.')
             # Redirect to a success page.
             return redirect('cim_users:patients')
