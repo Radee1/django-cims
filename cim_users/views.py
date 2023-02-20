@@ -15,6 +15,10 @@ def index(request):
     return render(request, 'cim_users/user_login.html')
 
 
+def handler404(request, exception):
+    return render(request, 'cim_users/handler404.html', status=404)
+
+
 def home(request):
     patients = Patient.objects.all().count()
     diagnosis = Diagnosis.objects.all().count()

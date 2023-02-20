@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<br><br>
+<section id="form">
+    <div>
+        <h2>The page you are looking for doesnot exist!</h2>
+        <a href="{% url 'cim_users:home' %}">Back</a>
+    </div>
+</section>
+{% endblock %}

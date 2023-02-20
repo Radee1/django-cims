@@ -34,3 +34,4 @@ urlpatterns = [
     path('update_patient', views.update_patient, name='update_patient'),
     path('delete_patient', views.delete_patient, name='delete_patient'),
 ]
+handler404 = 'cim_users.views.handler404'
