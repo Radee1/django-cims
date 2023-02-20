@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 
+app_name = "patients"
+
 #Patient Urls written here
 urlpatterns = [
     path('', views.index, name='index'),
