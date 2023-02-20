@@ -13,18 +13,19 @@ class Patient(models.Model):
     time_of_visit = models.DateTimeField(auto_now=True)
 
 
+class Team(models.Model):
+    full_name = models.CharField(max_length=80)
+    position = models.CharField(max_length=200)
+    department = models.CharField(max_length=200)
+
+
 class Diagnosis(models.Model):
     patient_name = models.CharField(max_length=80)
     test_name = models.CharField(max_length=200)
     diagnosis = models.CharField(max_length=200)
     time_of_visit = models.DateTimeField(auto_now=True)
     patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE, blank=True, null=True)
-
-
-class Team(models.Model):
-    full_name = models.CharField(max_length=80)
-    position = models.CharField(max_length=200)
-    department = models.CharField(max_length=200)
+    doctor_id = models.ForeignKey(Team, on_delete=models.CASCADE, blank=True, null=True)
 
 
 class Appointment(models.Model):
