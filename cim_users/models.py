@@ -10,7 +10,6 @@ class Usaz(models.Model):
 class Patient(models.Model):
     full_name = models.CharField(max_length=80)
     symptoms = models.CharField(max_length=200)
-    diagnosis = models.CharField(max_length=200)
     time_of_visit = models.DateTimeField(auto_now=True)
 
 
@@ -19,6 +18,7 @@ class Diagnosis(models.Model):
     test_name = models.CharField(max_length=200)
     diagnosis = models.CharField(max_length=200)
     time_of_visit = models.DateTimeField(auto_now=True)
+    patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE, blank=True, null=True)
 
 
 class Appointment(models.Model):
