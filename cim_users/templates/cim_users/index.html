@@ -11,7 +11,7 @@
             <h2><a>Patients</a></h2>
             <h5><b>TOTAL :{{patients}}</b></h5>
             <br>
-            <a href="/patients">
+            <a href="{% url 'cim_users:patients' %}">
                 <button class="submit">MANAGE</button>
             </a>
             <br><br>
@@ -24,7 +24,7 @@
             <h2><a>Appointments</a></h2>
             <h5><b>TOTAL : {{ appointments }}</b></h5>
             <br>
-            <a href="/appointments"><button class="submit">MANAGE</button></a>
+            <a href="{% url 'cim_users:appointments' %}"><button class="submit">MANAGE</button></a>
             <br><br>
         </div>
 
@@ -34,7 +34,7 @@
             <h2><a>Diagnosis</a></h2>
             <h5><b>TOTAL : {{ diagnosis }}</b></h5>
             <br>
-            <a href="/diagnosis"><button class="submit">MANAGE</button></a>
+            <a href="{% url 'cim_users:diagnosis' %}"><button class="submit">MANAGE</button></a>
             <br><br>
         </div>
 
@@ -44,7 +44,7 @@
             <h2><a>Medication</a></h2>
             <h5><b>TOTAL : {{ medicine }}</b></h5>
             <br>
-            <a href="/treatment"><button class="submit">MANAGE</button></a>
+            <a href="{% url 'cim_users:treatment' %}"><button class="submit">MANAGE</button></a>
             <br><br>
         </div>
     </div>
