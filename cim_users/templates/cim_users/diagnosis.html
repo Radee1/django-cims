@@ -58,7 +58,6 @@
             <h2><a>{{ d.patient_name}}</a></h2>
             <h5><a>{{ d.test_name}}</a></h5>
             <h5><a>{{ d.diagnosis}}</a></h5>
-            <h5><a>{{ d.time_of_visit}}</a></h5>
             <button class="submit" onclick="show('update_{{ d.patient_name}}')">Update</button>
             <button class="submit" onclick="show('delete_{{ d.patient_name}}')">Delete</button>
             <br><br>
@@ -79,10 +78,6 @@
                     <div>
                         <input type="text" value="{{d.diagnosis}}" name="diagnosis" placeholder="{{ d.diagnosis}}"
                             required>
-                    </div>
-                    <div>
-                        <input type="text" value="{{d.time_of_visit}}" name="time_of_visit"
-                            placeholder="{{ d.time_of_visit}}" required>
                     </div>
                     <input type="submit" value="Update Diagnosis">
                 </form>
