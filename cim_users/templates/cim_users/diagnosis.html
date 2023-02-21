@@ -9,7 +9,7 @@
         <div class="column">
             <br><br><br>
             <img src="{% static '/cim_users/left.png' %}" alt="Arrow image">
-            <h2><a href="/home">Back to dashboard</a></h2>
+            <h2><a href="{% url 'cim_users:home' %}">Back to dashboard</a></h2>
             <br><br>
         </div>
         <div class="column">
@@ -24,7 +24,7 @@
             <h2><a>Add </a></h2>
             <br><br>
             <div id="add_diagnosis" style="display:none;">
-                <form class="center form" method="POST" action="/add_diagnosis">
+                <form class="center form" method="POST" action="{% url 'cim_users:add_diagnosis' %}">
                     {% csrf_token %}
                     <div>
                         <input type="text" name="Patient_Name" placeholder="Patient Name" required>
@@ -34,9 +34,6 @@
                     </div>
                     <div>
                         <input type="text" name="diagnosis" placeholder="Diagnosis" required>
-                    </div>
-                    <div>
-                        <input type="text" name="time_of_visit" placeholder="Visit Time" required>
                     </div>
                     <input type="submit" value="Add Diagnosis">
                 </form>
@@ -48,7 +45,7 @@
         <div class="column">
             <br><br><br>
             <img src="{% static '/cim_users/right.png' %}" alt="right arrow image">
-            <h2><a href="/treatment">Next</a></h2>
+            <h2><a href="{% url 'cim_users:treatment' %}">Next</a></h2>
             <br><br>
         </div>
     </div>
@@ -66,7 +63,7 @@
             <button class="submit" onclick="show('delete_{{ d.patient_name}}')">Delete</button>
             <br><br>
             <div id="update_{{ d.patient_name}}" style="display:none;">
-                <form class="center form" method="POST" action="/update_diagnosis">
+                <form class="center form" method="POST" action="{% url 'cim_users:update_diagnosis' %}">
                     {% csrf_token %}
                     <div>
                         <input type="hidden" value="{{d.id}}" name="Diagnosis_ID" placeholder="{{ d.id}}">
@@ -95,7 +92,7 @@
             </div>
             <br><br>
             <div id="delete_{{ d.patient_name}}" style="display:none;">
-                <form class="center form" method="POST" action="/delete_diagnosis">
+                <form class="center form" method="POST" action="{% url 'cim_users:delete_diagnosis' %}">
                     {% csrf_token %}
                     <div>
                         <input type="text" style="display:none;" name="Patient_Name" value="{{d.patient_name}}"
