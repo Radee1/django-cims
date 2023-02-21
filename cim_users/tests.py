@@ -1,6 +1,14 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from .models import Patient, Medicine, Appointment, Diagnosis
+from django.urls import reverse
 
+class PatientIndexViewTests(TestCase):
+    def test_patients(self):
+        """
+        If  Patients view exist.
+        """
+        response = self.client.get(reverse('cim_users:patients'))
+        self.assertEqual(response.status_code, 200)
 
 class PatientTestCase(TestCase):
     def setUp(self):
@@ -13,6 +21,14 @@ class PatientTestCase(TestCase):
         p2 = Patient.objects.get(full_name="Jane Din")
         self.assertEqual(p1.full_name, 'John Doe')
         self.assertEqual(p2.full_name, 'Jane Din')
+
+class MedicineIndexViewTests(TestCase):
+    def test_medicine(self):
+        """
+        If  Pharmacy/medicine view exist.
+        """
+        response = self.client.get(reverse('cim_users:treatment'))
+        self.assertEqual(response.status_code, 200)
 
 
 class MedicineTestCase(TestCase):
@@ -28,6 +44,15 @@ class MedicineTestCase(TestCase):
         self.assertEqual(m2.drug_name, 'Panadol')
 
 
+class AppointmentIndexViewTests(TestCase):
+    def test_appointments(self):
+        """
+        If  Patients view exist.
+        """
+        response = self.client.get(reverse('cim_users:appointments'))
+        self.assertEqual(response.status_code, 200)
+
+
 class AppointmentTestCase(TestCase):
     def setUp(self):
         Appointment.objects.create(patient_name="John Doe", doctor="Dr James")
@@ -39,6 +64,15 @@ class AppointmentTestCase(TestCase):
         a2 = Appointment.objects.get(patient_name="Jane Din")
         self.assertEqual(a1.patient_name, 'John Doe')
         self.assertEqual(a2.patient_name, 'Jane Din')
+
+
+class DiagnosisIndexViewTests(TestCase):
+    def test_diagnosis(self):
+        """
+        If  Diagnosis view exists.
+        """
+        response = self.client.get(reverse('cim_users:diagnosis'))
+        self.assertEqual(response.status_code, 200)
 
 
 class DiagnosisTestCase(TestCase):
