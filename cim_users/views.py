@@ -229,15 +229,16 @@ def treatment(request):
 
 def add_treatment(request):
     if request.POST:
-        drug_name = request.POST['medicine']
-        prescribed_to = request.POST['Patient_Name']
+        drug = request.POST['medicine']
+        name = request.POST['Patient_Name']
         stock = request.POST['stock']
-        if Medicine.objects.filter(prescribed_to=prescribed_to).first():
+        if Medicine.objects.filter(prescribed_to=name).first():
             messages.info(request, 'Prescription already exists')
             return redirect('cim_users:treatment')
         else:
             messages.success(request, 'Prescription created.')
-            prescribed = Medicine.objects.create(prescribed_to=prescribed_to, drug_name=drug_name, stock=stock)
+            m_model = Medicine.objects.all()
+            prescribed = m_model.create(prescribed_to=name, drug_name=drug, stock=stock)
             drug_data = Medicine.objects.all()
             # Redirect to a success page.
             return redirect('cim_users:treatment')
@@ -275,7 +276,8 @@ def add_patient(request):
             messages.info(request, 'Patient record already exists')
             return redirect('cim_users:patients')
         else:
-            patient = Patient.objects.create(full_name=user_name, symptoms=ailment)
+            p_model = Patient.objects.all()
+            patient = p_model.create(full_name=user_name, symptoms=ailment)
             messages.success(request, 'Patient record created.')
             # Redirect to a success page.
             return redirect('cim_users:patients')
@@ -286,8 +288,9 @@ def add_patient(request):
 def patients(request):
     p_data = Patient.objects.all()
     p_number = p_data.count()
+    data = {'p_data': p_data, 'p_number': p_number}
     # Redirect to a success page.
-    return render(request, 'cim_users/patients.html', {'p_data': p_data, 'p_number': p_number})
+    return render(request, 'cim_users/patients.html', data)
 
 
 def delete_patient(request):
