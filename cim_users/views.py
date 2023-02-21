@@ -146,7 +146,7 @@ def make_appointment(request):
             messages.info(request, 'Patient appointment already exists')
             return redirect('cim_users:appointments')
         else:
-            Appointment.objects.create(patient_name=user_name, doctor=doctor)
+            Appointment.objects.create(patient_name=user_name, doctor=doctor, time=time)
             messages.success(request, 'Appointment created.')
             # Redirect to a success page.
             return redirect('cim_users:appointments')
