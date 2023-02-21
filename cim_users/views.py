@@ -130,10 +130,11 @@ def update_member(request):
 
 def appointments(request):
     a_data = Appointment.objects.all()
+    a_number = a_data.count()
     # doctors data
     d_data = Team.objects.all().filter(position='Doctor')
     # Redirect to a success page.
-    return render(request, 'cim_users/appointments.html', {'a_data': a_data, 'd_data': d_data})
+    return render(request, 'cim_users/appointments.html', {'a_data': a_data, 'd_data': d_data, 'a_number': a_number})
 
 
 def make_appointment(request):
