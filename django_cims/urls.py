@@ -15,11 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include("cim_users.urls")),
-    path('cim_users/', include("cim_users.urls")),
+    path('', views.index, name='index'),
+    path('cim_users/', include("cim_users.urls", namespace="cim_users")),
 ]
 urlpatterns += staticfiles_urlpatterns()
