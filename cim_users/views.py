@@ -141,12 +141,11 @@ def make_appointment(request):
     if request.POST:
         user_name = request.POST['Patient_Name']
         doctor = request.POST['doctor']
-        time = request.POST['time']
         if Appointment.objects.filter(patient_name=user_name).first():
             messages.info(request, 'Patient appointment already exists')
             return redirect('cim_users:appointments')
         else:
-            Appointment.objects.create(patient_name=user_name, doctor=doctor, time=time)
+            Appointment.objects.create(patient_name=user_name, doctor=doctor)
             messages.success(request, 'Appointment created.')
             # Redirect to a success page.
             return redirect('cim_users:appointments')
