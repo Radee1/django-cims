@@ -29,7 +29,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'cim_users/templates/cim_users')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["django-cims.herokuapp.com", "https://django-cims.herokuapp.com"]
 
