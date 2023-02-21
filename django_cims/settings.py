@@ -80,7 +80,9 @@ WSGI_APPLICATION = 'django_cims.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    'default': {
+        'ENGINE': dj_database_url.parse(os.environ.get("DATABASE_URL")),
+    }
 }
 
 
