@@ -42,12 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'cim_users.apps.CimUsersConfig',
-    'patients.apps.PatientsConfig',
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
-
-
 ]
 
 MIDDLEWARE = [
