@@ -70,6 +70,7 @@ def create_user(request):
         messages.info(request, 'Account already exists')
         return render(request, 'cim_users/user_create.html')
     else:
+        User.objects.create_user(username=user_name, password=user_password, email=user_email)
         messages.success(request, 'Account created.')
         # Redirect to a success page.
         return render(request, 'cim_users/user_login.html')
