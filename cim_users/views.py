@@ -303,7 +303,6 @@ def update_patient(request):
     user_name = request.POST['Patient_Name']
     p_id = request.POST['Patient_ID']
     ailment = request.POST['ailment']
-    diagnosis = request.POST['diagnosis']
     user = Patient.objects.get(id=p_id)
     user.full_name = user_name
     user.diagnosis = diagnosis
