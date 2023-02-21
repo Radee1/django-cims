@@ -27,7 +27,7 @@
                 <form class="center form" method="POST" action="{% url 'cim_users:add_treatment' %}">
                     {% csrf_token %}
                     <div>
-                        <input type="text" name="Patient_Name" placeholder="Prescribed To" required>
+                        <input type="text" name="Patient_Name" placeholder="Patient Name" required>
                     </div>
                     <div>
                         <input type="text" name="medicine" placeholder="Medication" required>
@@ -55,8 +55,8 @@
         <div class="column">
             <br>
             <img src="{% static '/cim_users/drug.png' %}" alt="Patient image">
-            <h2><a>{{ m.drug_name}}</a></h2>
-            <h5><a>{{ m.prescribed_to}}</a></h5>
+            <h2><a>{{ m.prescribed_to}}</a></h2>
+            <h5><a>{{ m.drug_name}}</a></h5>
             <h5><a>{{ m.stock }}</a></h5>
             <button class="submit" onclick="show('update_{{ m.prescribed_to}}')">Update</button>
             <button class="submit" onclick="show('delete_{{ m.prescribed_to}}')">Delete</button>
