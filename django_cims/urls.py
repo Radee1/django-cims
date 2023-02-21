@@ -22,4 +22,3 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('cim_users/', include("cim_users.urls", namespace="cim_users")),
 ]
-urlpatterns += staticfiles_urlpatterns()
