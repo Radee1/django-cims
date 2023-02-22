@@ -200,8 +200,7 @@ To manage patient information and enable tracking of health care services
 
 2. **Patient**
 
-* The Patient model captures patient details, including id as the primary key, full_name, symptoms and
-the time of visit. The model has a one to many relationship with the Diagnosis, Medicine, and Appointment
+* The Patient model captures patient details, including id as the primary key, full_name and symptoms. The model has a one to many relationship with the Diagnosis, Medicine, and Appointment
 models. The relationship is enforced by the patient_id foreign key in the different related models.
 
 3. **Appointment**
