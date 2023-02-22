@@ -26,7 +26,13 @@ def home(request):
     diagnosis = Diagnosis.objects.all().count()
     medicine = Medicine.objects.all().count()
     appointments = Appointment.objects.all().count()
-    return render(request, 'cim_users/index.html', {'patients': patients, 'diagnosis': diagnosis, 'medicine': medicine, 'appointments': appointments})
+    return render(
+                  request, 'cim_users/index.html',
+                  {
+                    'patients': patients,
+                    'diagnosis': diagnosis,
+                    'medicine': medicine,
+                    'appointments': appointments})
 
 # loging
 
@@ -40,7 +46,10 @@ def login_user(request):
     user_password = request.POST['password']
     if User.objects.filter(username=user_name).first():
         print("This username exists")
-        user = authenticate(request, username=user_name, password=user_password)
+        user = authenticate(
+                            request,
+                            username=user_name,
+                            password=user_password)
         if user is not None:
             Welcome = user_name+' Logged in Successfully'
             # login
@@ -72,7 +81,10 @@ def create_user(request):
         messages.info(request, 'Account already exists')
         return render(request, 'cim_users/user_create.html')
     else:
-        User.objects.create_user(username=user_name, password=user_password, email=user_email)
+        User.objects.create_user(
+                                 username=user_name,
+                                 password=user_password,
+                                 email=user_email)
         messages.success(request, 'Account created.')
         # Redirect to a success page.
         return render(request, 'cim_users/user_login.html')
@@ -90,7 +102,10 @@ def services(request):
 def team(request):
     t_data = Team.objects.all()
     t_number = t_data.count()
-    return render(request, 'cim_users/team.html', {'t_data': t_data, 't_number': t_number})
+    return render(
+                  request,
+                  'cim_users/team.html',
+                  {'t_data': t_data, 't_number': t_number})
 
 
 def add_member(request):
@@ -103,7 +118,10 @@ def add_member(request):
             return redirect('cim_users:team')
         else:
             messages.success(request, 'Team member successfully added.')
-            member = Team.objects.create(full_name=full_name, position=position, department=department)
+            member = Team.objects.create(
+                                         full_name=full_name,
+                                         position=position,
+                                         department=department)
             return redirect('cim_users:team')
     else:
         return render('cim_users:team')
@@ -137,7 +155,10 @@ def appointments(request):
     # doctors data
     d_data = Team.objects.all().filter(position='Doctor')
     # Redirect to a success page.
-    return render(request, 'cim_users/appointments.html', {'a_data': a_data, 'd_data': d_data, 'a_number': a_number})
+    return render(
+                  request,
+                  'cim_users/appointments.html',
+                  {'a_data': a_data, 'd_data': d_data, 'a_number': a_number})
 
 
 def make_appointment(request):
@@ -149,7 +170,10 @@ def make_appointment(request):
             messages.info(request, 'Patient appointment already exists')
             return redirect('cim_users:appointments')
         else:
-            Appointment.objects.create(patient_name=user_name, doctor=doctor, time=time)
+            Appointment.objects.create(
+                                       patient_name=user_name,
+                                       doctor=doctor,
+                                       time=time)
             messages.success(request, 'Appointment created.')
             # Redirect to a success page.
             return redirect('cim_users:appointments')
@@ -182,7 +206,10 @@ def update_appointment(request):
 def diagnosis(request):
     d_data = Diagnosis.objects.all()
     d_number = d_data.count()
-    return render(request, 'cim_users/diagnosis.html', {'d_data': d_data, 'd_number': d_number})
+    return render(
+                  request,
+                  'cim_users/diagnosis.html',
+                  {'d_data': d_data, 'd_number': d_number})
 
 
 def add_diagnosis(request):
@@ -195,7 +222,10 @@ def add_diagnosis(request):
             messages.info(request, 'Patient already diagnized')
             return redirect('cim_users:diagnosis')
         else:
-            Diagnosis.objects.create(patient_name=name, test_name=test_name, diagnosis=diagnosis)
+            Diagnosis.objects.create(
+                                     patient_name=name,
+                                     test_name=test_name,
+                                     diagnosis=diagnosis)
             messages.success(request, 'Diagnosis created.')
             # Redirect to a success page.
             return redirect('cim_users:diagnosis')
@@ -228,7 +258,8 @@ def update_diagnosis(request):
 def treatment(request):
     med_data = Medicine.objects.all()
     number = med_data.count()
-    return render(request, 'cim_users/pharmacy.html', {'number': number, 'med_data': med_data})
+    url = 'cim_users/pharmacy.html'
+    return render(request, url, {'number': number, 'med_data': med_data})
 
 
 def add_treatment(request):
@@ -241,7 +272,12 @@ def add_treatment(request):
             return redirect('cim_users:treatment')
         else:
             messages.success(request, 'Prescription created.')
-            prescribed = Medicine.objects.create(prescribed_to=prescribed_to, drug_name=drug_name, stock=stock)
+            pres = Medicine.objects.all()
+            prescribed = pres.create(
+                                     prescribed_to=prescribed_to,
+                                     drug_name=drug_name,
+                                     stock=stock
+                                     )
             drug_data = Medicine.objects.all()
             # Redirect to a success page.
             return redirect('cim_users:treatment')
@@ -279,7 +315,8 @@ def add_patient(request):
             messages.info(request, 'Patient record already exists')
             return redirect('cim_users:patients')
         else:
-            patient = Patient.objects.create(full_name=user_name, symptoms=ailment)
+            pat = Patient.objects.all()
+            patient = pat.create(full_name=user_name, symptoms=ailment)
             messages.success(request, 'Patient record created.')
             # Redirect to a success page.
             return redirect('cim_users:patients')
@@ -290,8 +327,9 @@ def add_patient(request):
 def patients(request):
     p_data = Patient.objects.all()
     p_number = p_data.count()
+    url = 'cim_users/patients.html'
     # Redirect to a success page.
-    return render(request, 'cim_users/patients.html', {'p_data': p_data, 'p_number': p_number})
+    return render(request, url, {'p_data': p_data, 'p_number': p_number})
 
 
 def delete_patient(request):
