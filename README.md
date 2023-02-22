@@ -252,6 +252,8 @@ test_name for carried out tests, diagnosis, patient_id, doctor_id and the time o
 
 * The CIMS application has a team page which shows the different team members available before a user registers on the app. When a user registers, the application will then enable the authorized user/admin to view, add, update or delete the team members.
 
+* The Links; the service page is linked to all the four services found on the dashboard. The four services on the dashboard (that is to say, cims patients, appointments, diagnosis and pharmacy) when clicked, all have the "back to the dashboard" arrow that helps take it back to the dashboard and the "next" arrow to aid navigation to the next service.
+
 * The CIMS app has a services page. The service page for users who are just visiting the application before registration is static and only offers a chance to view the services offered. After registration, the users/admins will be able to view and manage the services. This means that the users will be able to fully manage the patients, the appointments, the diagnosis and the medication or prescription on the application.
 
 * I have tested the functionality through code inspection and I'm happy to report that the CIMS app features function as intended.
@@ -281,15 +283,45 @@ test_name for carried out tests, diagnosis, patient_id, doctor_id and the time o
 
 1. **HTML**
 
+* 1 error was found when passing through the official W3C validator.
+
 2. **CSS**
 
-3. **Python**
+* No errors were found when passing through the official W3C validator.
 
-4. **Accessibility**
+![The CSS validation](cim_users/static/cim_users/W3C%20CSS%20validation.PNG)
+
+3. **JavaScript**
+
+* No errors were found when passing through the official Jshint validator.
+
+* The following metrics were returned;
+
+* There are 4 functions in this file
+
+* Function with the largest signature take 2 arguments, while the median is 1.
+
+* Largest function has 4 statements in it, while the median is 2.
+
+* The most complex function has a cyclomatic complexity value of 1 while the median is 1.
+
+4. **Python**
+
+* No errors were found in the final code base when passing it through the PEP8-Pycodestyle validator.
+
+![The pycodestyle validation](cim_users/static/cim_users/Pep8%20pycodestyle%20validator%20results.PNG)
+
+5. **Accessibility**
+
+* The accessibility score for desktop applications using the lighthouse is 96.
 
 ![The lighthouse accessibility score](cim_users/static/cim_users/lighthouseaccesibility.PNG)
 
 **Unfixed Bugs**
+
+* The HTML validator flagged the style tag outside the header and it was solved by scoping the style tag but the solution was discontinued therefore, the validator keeps flagging the style tag as an error.
+
+![The HTML validation error](cim_users/static/cim_users/unfixedhtmlerror.PNG)
 
 -------
 ## Deployment
@@ -331,9 +363,16 @@ The following steps were followed to deploy this project to Heroku:
 ------
 * Lecture/ course videos on how to deploy the application
 
+* practice project I think therefore I blog
+
 * YouTube tutorials on how to import library in python https://www.youtube.com/watch?v=h0oRPIlnJYQ
 
 * All images are from Pixabay https://pixabay.com/images/search/
 
-* Stackover flow for fixing code bugs https://stackoverflow.com/
+* Stack over flow for fixing code bugs https://stackoverflow.com/
 
+* stackoverflow for scoping https://stackoverflow.com/questions/28633038/what-is-the-current-state-of-the-scoped-attribute-for-the-style-element-in-htm/45692033#45692033/
+
+* The favicon was generated using favicon.io https://favicon.io/
+
+* The database schema was drawn using drawsql https://drawsql.app/
