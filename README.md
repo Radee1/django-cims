@@ -196,27 +196,33 @@ To manage patient information and enable tracking of health care services
 
 1. **Usaz**
 
-*
+* This model was designed to capture user details along with the default django User model.
 
 2. **Patient**
 
-*
+* The Patient model captures patient details, including id as the primary key, full_name, symptoms and
+the time of visit. The model has a one to many relationship with the Diagnosis, Medicine, and Appointment
+models. The relationship is enforced by the patient_id foreign key in the different related models.
 
 3.**appointment**
 
-*
+* This model captures appointment details, including id as the primary key, patient_name, patient_id and
+time of appointment. The model has a one to many relationship with the Team and Patient
+models. The relationship is enforced by the patient_id and doctor_id foreign key columns
+visible in the model.
 
 4. **diagnosis**
 
-*
+* The Diagnosis model captures all diagnosis details, including id as the primary key, patient_name,
+test_name for carried out tests, diagnosis, patient_id, doctor_id and the time of diagnosis as time_of_visit. The model has a one to many relationship with the Patient and Team models. The relationship is enforced by the patient_id and doctor_id foreign key columns in the model.
 
 5. **medicine**
 
-*
+* This model captures all pharmacy or treatment or medicine details, comprised of id as the primary key, medicine name as drug_name, patient name as prescribed_to, amount of prescription as stock, and patient_id. The model has a one to one relationship with the Patient model, enforced by the patient_id foreign key column in the model.
 
 6. **team**
 
-*
+*  This last model captures CIMS service providers or team details, comprised of id as the primary key, full_name, position and area of specialisation as department. The model has a one to many relationship with the Appointment and Diagnosis model, enforced by the team primary key (id) as doctor_id foreign key column in the model.
 
 -------
 ## Testing
