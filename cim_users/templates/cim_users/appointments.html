@@ -86,9 +86,18 @@
                             <input type="text" value="{{a.patient_name}}" name="Patient_Name"
                                 placeholder="{{ a.patient_name}}" required>
                         </div>
-                        <div>
-                            <input type="text" value="{{a.doctor}}" name="doctor" placeholder="{{a.doctor}}" required>
-                        </div>
+                        {% if d_data %}
+                        <select name="doctor">
+                            {% for d in d_data %}
+                            <option value="{{ d.full_name }}">
+                                Dr. {{ d.full_name }} | {{ d.department }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                        {% else %}
+                        <small><b>No Doctor Available</b></small>
+                        <input name="doctor" placeholder="Input Desired Doctor's Name" disabled>
+                        {% endif %}
                         <div>
                             <input type="text" value="{{a.time}}" name="time" placeholder="{{a.time}}" required>
                         </div>
