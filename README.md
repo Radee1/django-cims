@@ -188,8 +188,35 @@ To manage patient information and enable tracking of health care services
 ![update teams](cim_users/static/cim_users/updateteammembers.PNG)
 
 ------
-## Logical Flow
+## Database Schema
 
+* The CIMS database is comprised of the following custom models;
+
+![The Database Schema](cim_users/static/cim_users/drawSQL-copy-of-django-mysql-export-2023-02-20.png)
+
+1. **Usaz**
+
+*
+
+2. **Patient**
+
+*
+
+3.**appointment**
+
+*
+
+4. **diagnosis**
+
+*
+
+5. **medicine**
+
+*
+
+6. **team**
+
+*
 
 -------
 ## Testing
