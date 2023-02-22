@@ -14,3 +14,10 @@ function show(y) {
 function say(x) {
     alert(x);
 }
+
+function nav_shift(from, to) {
+    var source = document.getElementById(from);
+    var target = document.getElementById(to);
+    source.setAttribute("id", "");
+    target.setAttribute("id", "active");
+}
