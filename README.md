@@ -226,17 +226,41 @@ test_name for carried out tests, diagnosis, patient_id, doctor_id and the time o
 -------
 ## Testing
 
-1. **The functionality of the site**
+1. **Automated tests**
 
-* Using Django unit testing to ensure that models within the app exist, are functioning and can be used to capture user data.
+* Using custom class based Django unit testing to ensure that the index views and urls of the services, forexample, appointments, patients, diagnosis and medicine can be accessed without fail and that the custom models within the app can capture user data.
 
-![The django test results](cim_users/static/cim_users/djangotests.PNG)
+* The results after running tests through "python3 manage.py test cim_users/"
 
-2. **Responsiveness**
+![Console results of the tests](cim_users/static/cim_users/automated%20tests.PNG)
 
-3. **Bugs and Fixes**
+2. **The functionality of the site**
 
-* During the login phase, there was a bug that returned false message for users created that are not in the system. This bug was fixed by simply changing the message to 'credentials does not exist' in the views for the logins.
+* The CIMS app consists of nine pages namely: the home page/ the landing page before login, the dashboard page after a user logs in, the team, services, patients, appointments, diagnosis/laboratory, pharmacy/medication, log in, register or signup pages.
+
+* The CIMS app has a navigation bar that runs across all the pages of the app for easy navigation.
+
+* The navigation bar has an active menu, when a user opens the CIMS app, they navigate from page to page using this feature. Furthermore, the color of the active menu items is white whereas the inactive pages remain colored yellow. The white color shows which page the user is on.
+
+* Before login, the CIMS app user only has access two forms. One of the forms encourages users to log on to the application. The second form encourages the users to register on to the application. The users will be able to enter their names, emails, passwords and to confirm the passwords chosen. These credentials will then be used to log on to the application to be able to manage the clinical services offered by the application.
+
+* The CIMS application has a team page which shows the different team members available before a user registers on the app. When a user registers, the application will then enable the authorized user/admin to view, add, update or delete the team members.
+
+* The CIMS app has a services page. The service page for users who are just visiting the application before registration is static and only offers a chance to view the services offered. After registration, the users/admins will be able to view and manage the services. This means that the users will be able to fully manage the patients, the appointments, the diagnosis and the medication or prescription on the application.
+
+* I have tested the functionality through code inspection and I'm happy to report that the CIMS app features function as intended.
+
+3. **Responsiveness**
+
+* The CIMS app is responsive to different media devices. Media queries are set for different device views with a maximum width of 768 pixels and 600 pixels or below.
+
+* I have tested the responsiveness of the CIMS app and therefore happy to report that through code inspection, the CIMS app responds well to different device views.
+
+4. **Bugs and Fixes**
+
+**Bug 1:** During the login phase, there was a bug that returned false message for users created that are not in the system. This bug was fixed by simply changing the message to 'credentials do not exist' in the views for the logins.
+
+**Bug 2:** The database was not capturing the registered accounts. The accounts created were not reflecting even though the flash message was showing that they were created. **Fix** Added a user creation method in the user creation logic, right before displaying the success flash message.
 
 -------
 ## Validation
