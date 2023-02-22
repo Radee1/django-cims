@@ -19,8 +19,16 @@ urlpatterns = [
     path('delete_member', views.delete_member, name='delete_member'),
     path('appointments', views.appointments, name='appointments'),
     path('make_appointment', views.make_appointment, name='make_appointment'),
-    path('update_appointment', views.update_appointment, name='update_appointment'),
-    path('delete_appointment', views.delete_appointment, name='delete_appointment'),
+    path(
+        'update_appointment',
+        views.update_appointment,
+        name='update_appointment'
+    ),
+    path(
+        'delete_appointment',
+        views.delete_appointment,
+        name='delete_appointment'
+    ),
     path('diagnosis', views.diagnosis, name='diagnosis'),
     path('add_diagnosis', views.add_diagnosis, name='add_diagnosis'),
     path('update_diagnosis', views.update_diagnosis, name='update_diagnosis'),
