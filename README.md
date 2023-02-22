@@ -187,6 +187,12 @@ To manage patient information and enable tracking of health care services
 
 ![update teams](cim_users/static/cim_users/updateteammembers.PNG)
 
+### Features left to implement
+
+* Link the CIMS app to social media platforms like Facebook
+
+* Create logic and UI to separate admins/user views and super admins/superusers
+
 ------
 ## Database Schema
 
@@ -196,7 +202,7 @@ To manage patient information and enable tracking of health care services
 
 1. **Usaz**
 
-* This model was designed to capture user details along with the default django User model.
+* This model was designed to capture user detasuper adminsith the default django User model.
 
 2. **Patient**
 
