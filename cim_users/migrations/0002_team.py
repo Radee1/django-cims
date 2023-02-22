@@ -13,7 +13,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Team',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    'id',
+                    models.BigAutoField(
+                                        auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')
+                ),
                 ('full_name', models.CharField(max_length=80)),
                 ('position', models.CharField(max_length=200)),
                 ('department', models.CharField(max_length=200)),

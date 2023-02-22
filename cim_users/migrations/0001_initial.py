@@ -14,7 +14,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Appointment',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    'id',
+                    models.BigAutoField(
+                                        auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')
+                ),
                 ('patient_name', models.CharField(max_length=80)),
                 ('doctor', models.CharField(max_length=200)),
                 ('time', models.CharField(max_length=200)),
@@ -23,7 +30,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Diagnosis',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    'id',
+                    models.BigAutoField(
+                                        auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')
+                ),
                 ('patient_name', models.CharField(max_length=80)),
                 ('test_name', models.CharField(max_length=200)),
                 ('diagnosis', models.CharField(max_length=200)),
@@ -33,7 +47,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Medicine',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    'id',
+                    models.BigAutoField(
+                                        auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')
+                ),
                 ('drug_name', models.CharField(max_length=80)),
                 ('stock', models.CharField(max_length=200)),
                 ('prescribed_to', models.CharField(max_length=200)),
@@ -42,7 +63,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Patient',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    'id',
+                    models.BigAutoField(
+                                        auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')
+                ),
                 ('full_name', models.CharField(max_length=80)),
                 ('symptoms', models.CharField(max_length=200)),
                 ('diagnosis', models.CharField(max_length=200)),
@@ -52,7 +80,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Usaz',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    'id',
+                    models.BigAutoField(
+                                        auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')
+                ),
                 ('user_ID', models.CharField(max_length=10)),
                 ('user_name', models.CharField(max_length=20)),
                 ('sign_in_time', models.DateTimeField(auto_now=True)),

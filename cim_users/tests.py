@@ -2,6 +2,7 @@ from django.test import TestCase, Client
 from .models import Patient, Medicine, Appointment, Diagnosis
 from django.urls import reverse
 
+
 class PatientIndexViewTests(TestCase):
     def test_patients(self):
         """
@@ -10,10 +11,17 @@ class PatientIndexViewTests(TestCase):
         response = self.client.get(reverse('cim_users:patients'))
         self.assertEqual(response.status_code, 200)
 
+
 class PatientTestCase(TestCase):
     def setUp(self):
-        Patient.objects.create(full_name="John Doe", symptoms="Fever", diagnosis="Malaria")
-        Patient.objects.create(full_name="Jane Din", symptoms="Cough", diagnosis="Cold")
+        Patient.objects.create(
+                               full_name="John Doe",
+                               symptoms="Fever",
+                               diagnosis="Malaria")
+        Patient.objects.create(
+                               full_name="Jane Din",
+                               symptoms="Cough",
+                               diagnosis="Cold")
 
     def test_patient_can_be_created(self):
         """Patients can be created."""
@@ -21,6 +29,7 @@ class PatientTestCase(TestCase):
         p2 = Patient.objects.get(full_name="Jane Din")
         self.assertEqual(p1.full_name, 'John Doe')
         self.assertEqual(p2.full_name, 'Jane Din')
+
 
 class MedicineIndexViewTests(TestCase):
     def test_medicine(self):
@@ -77,8 +86,14 @@ class DiagnosisIndexViewTests(TestCase):
 
 class DiagnosisTestCase(TestCase):
     def setUp(self):
-        Diagnosis.objects.create(patient_name="John Doe", test_name="Malaria Test", diagnosis="Malaria Positive")
-        Diagnosis.objects.create(patient_name="Jane Din", test_name="Sputum test", diagnosis="Covid Positive")
+        Diagnosis.objects.create(
+                                 patient_name="John Doe",
+                                 test_name="Malaria Test",
+                                 diagnosis="Malaria Positive")
+        Diagnosis.objects.create(
+                                 patient_name="Jane Din",
+                                 test_name="Sputum test",
+                                 diagnosis="Covid Positive")
 
     def test_diagnosis_can_be_created(self):
         """Diagnosis can be created."""
